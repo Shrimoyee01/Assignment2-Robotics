@@ -1,0 +1,31 @@
+Date - 21/04/2022
+Attended - Shrim, Lydia, Gavin (aka G-dawg)
+
+Actions
+	- reseach other robots - Shrim and Lydia
+	- upload previous assignment 1's for a working base
+	- bring Kyle up to speed
+	- divide up the code into chunks that are tackleable
+
+
+Notes
+
+Gavin recommended
+
+Pick a better robot ->  
+RMRC
+Environment might change/collision (am i in collision?)
+GUI
+Camera --> virtual camera (lab 8 week 10)
+Refine the scope?
+
+Orientation of the robots
+Velocities - need to keep the orientation constant - resolved motion rate control - rmrc
+
+Collision detection - dynamic type - 
+Kid appears - button on the gui -if I move 
+
+Gui
+
+Visual serving - inclusion of a camera - virtual camera
+Box markers - QR code marker - image processing move, image processing move.

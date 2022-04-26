@@ -1,0 +1,32 @@
+Date - 26/04/2022
+Attended - Shri, Lydia, Kyle
+
+Actions
+	- reseach other robots - Shrim and Lydia
+	- upload previous assignment 1's for a working base
+	- bring Kyle up to speed
+	- divide up the code into chunks that are tackleable
+	- Shri to submit SWMS to teams
+	- Next meeting 3/5/22
+
+Notes
+	- new robot chosen XX
+
+
+Development Notes
+- GUI design
+- Collision detection
+- Animate shopper
+- 
+
+Teams notes
+Gavin:
+Over the past week I have enjoyed talking to many groups about your ideas and 
+helping you to narrow down the scope and refine your focus. This usually meant 
+asking teams to remember the key demonstrators for this assignment, e.g., combining 
+what we did in Lab Assignment 1 (inverse kinematics, trajectory planning, robot and 
+environment modeling and safety) with the material from the lab exercises in the 
+second half of the session such as RMRC, collision detection/avoidance, a user 
+interface that allows for joint-angle-based and end-effector Cartesian control, 
+an e-stop with 2 actions to continue, and visual servoing at least with a simulated camera (see Week 10 Lab 8). 
+ 

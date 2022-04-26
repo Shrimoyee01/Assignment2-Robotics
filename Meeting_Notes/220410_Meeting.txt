@@ -1,0 +1,57 @@
+Date - 10/04/2022
+Attended - Shrim, Lydia
+
+Actions
+	- submit proposal - Shrim
+	- reseach other robots - Shrim and Lydia
+
+Notes
+Ideas for robot - pick and place
+	- car refuling https://youtu.be/T2fzo1lpDO4
+	- aged care bathroom assistent robot - wipe bum, help in shower, help getting on and off the toilet
+	old people couldnt be trained to be safe around the robot - may be scared by unfamilar tech
+	would need to be water proof
+	- cocktail maker
+	- water pourer
+	- sushi train
+
+	- grocery shopper 
+	"You go shopping right?
+	How annoying is it to play a game of I'm sorry and excuse mes past a maze of people 
+	every fucking week just to get your groceries
+	Imagine if all you had to do is sit at the front and in a tablet enter a list of 
+	items that you need and the very friendly robots got you all your groceries in no time
+	Making sure your feet are safe from those massive trolleys in very untrusted hand"
+	"So all we're doing for the assignment is programming the picking up
+	 of a box of cereal and dropping it in a bag"
+	"Robot mounted on a trolley-thing, have  set number of bags on frames
+	 so it's like putting the shopping in boxes. The robot reads the codes on the shelf tags
+	Then reads the barcode as it puts it in to check it's the right item
+	Maybe a bit of AI to check the package looks good"
+
+	https://www.dobot.cc/dobot-magician/specification.html
+
+Considerations
+- Keep the robot in the trolley-like vehicle. 
+We're only aiming to show the robot movement for the proof of concept
+- People have to dodge the shopper who areent trained to be around robots
+- 
+- Robot is probably not appropriate; 
+"it will need to hold the payload right? 
+so both the gripper and the robot needs to be able to hold payload weight"
+
+
+Proposal
+Submission topic
+Title: It’s Not Us, Its Them 
+By Lydia Angus (12029120) and Shrimoyee Sen (13867611)
+
+Description 
+As adults, we all have to go grocery shopping. The same ordeal, every weekend, just to be bombarded with hundreds of trollies and screaming kids, and slow-paced adults. We have all played the game of excuse me and sorry, still to be irritated at people’s shopping habits. 
+Imagine if all you had to do is sit at the front and in a tablet enter a list of items that you need, and the very friendly robots brought you your groceries. We would like to create a system where you input your desired shopping list into an interface. An assigned robot that sits on a navigates around the market and delivers and scans your desired groceries. Which only leaves you to scan and exit the premises without a scar or emotional turmoil.
+
+The Robot
+We are considering using the Dobot Magician Gripper with a claw gripper. It has a payload of 500 grams, and the gripper can carry 8 Newtons of force. If this is to be converted to mass, the gripper can lift approximated 72.64kg at one time. The position repeatability is accurate to 0.2mm, this would allow us to accurate input the location and trust the robot can reach the desired location. It is small, and light weight, allowing to minimise the problems if there are accidents. 
+
+Our Repository 
+https://github.com/Shrimoyee01/Assignment2-Robotics.git
