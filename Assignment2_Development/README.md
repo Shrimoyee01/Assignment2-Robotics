@@ -2,9 +2,9 @@
 
 Working copy of Assignment 2 
 
->@Enviro class handles the environment loading
->@Animation class handles the robot action
->@Object class handles the idetification and moving of the shopping objects
+>@Enviro class handles the environment loading <br>
+>@Animation class handles the robot action <br>
+>@Object class handles the idetification and moving of the shopping objects <br>
 
 - Need to develop GUI
 - Need to develop class for person walking
