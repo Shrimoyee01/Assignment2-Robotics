@@ -3,7 +3,7 @@
 ## Group members
 - Lydia Angus 12029120
 - Shrimonyee Sen 13867611
-- Kyle Jewiss
+- Kyle Jewiss 13540380
 
 ## Proposal
 ### Submission topic
