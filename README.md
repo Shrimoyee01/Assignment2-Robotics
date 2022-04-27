@@ -10,8 +10,7 @@
 Title: It’s Not Us, Its Them 
 
 ### Description 
-> As adults, we all have to go grocery shopping. The same ordeal, every weekend, just to be bombarded with hundreds of trollies and screaming kids, and slow-paced adults. We have all played the game of excuse me and sorry, still to be irritated at people’s shopping habits. 
-Imagine if all you had to do is sit at the front and in a tablet enter a list of items that you need, and the very friendly robots brought you your groceries. We would like to create a system where you input your desired shopping list into an interface. An assigned robot that sits on a navigates around the market and delivers and scans your desired groceries. Which only leaves you to scan and exit the premises without a scar or emotional turmoil.
+> Coffee shops are busy places, people order coffee with confusing names, wander about and then complain that their coffee is cold by the time the barrista has found them. To solve this and reduce the workload on the cafe staff, we propose to create a robot that takes the coffee, finds the correct customer and puts the coffee in their hand.
 
 ### The Robot
 *TBC*
