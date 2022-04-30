@@ -12,18 +12,18 @@ methods
         hold on;
         disp('setting up room...');
         %% setup walls and floor
-        self.loadSurf();
+%         self.loadSurf();
 
         %% setup objects
-        self.createObject('table2.ply',transl(0,0.25,0));
-        self.createObject('fireExtinguisher.ply',transl(-2.8,2.8,0.5));
-        self.createObject('fireExtinguisher.ply',transl(2.8,-2.8,0.5));
-        self.createObject('button1.ply',transl(2,3,1));
+        self.createObject('cup1.ply',transl(0,0,0));
+%         self.createObject('fireExtinguisher.ply',transl(-2.8,2.8,0.5));
+%         self.createObject('fireExtinguisher.ply',transl(2.8,-2.8,0.5));
+%         self.createObject('button1.ply',transl(2,3,1));
 
         %% setup view range
-        xlim([-3 3]);
-        ylim([-3 3]);
-        zlim([-0.5 1]);
+%         xlim([-3 3]);
+%         ylim([-3 3]);
+%         zlim([-0.5 1]);
 
         axis equal;
         camlight;
