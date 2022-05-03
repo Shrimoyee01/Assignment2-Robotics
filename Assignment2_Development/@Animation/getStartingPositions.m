@@ -1,7 +1,7 @@
 
 
-function [brickLocations, brickWallLocations, robot1Base, ...
-    robot2Base] = getStartingPositions(~)
+function [brickLocations, brickWallLocations, robot1Base ...
+    ] = getStartingPositions(~)
 %GETSTARTINGPOSITIONS This function sets all the starting locations for the robot
 %animation
 %   brickTransformList set's the locations for each of the bricks
@@ -26,10 +26,6 @@ function [brickLocations, brickWallLocations, robot1Base, ...
     
     %Robot 1 Base Location
     robot1Base = transl(0, -0.3, tableH)*trotz(pi/2);
-
-
-    %Robot 2 Base Location
-    robot2Base = transl(0, 0.6, tableH)*trotz(-pi/2);
 
     brickWallLocations{1}= transl( robot1Base(1,1)         ,0, tableH           );
     brickWallLocations{2}= transl((robot1Base(1,1)-brickW) ,0, tableH           );

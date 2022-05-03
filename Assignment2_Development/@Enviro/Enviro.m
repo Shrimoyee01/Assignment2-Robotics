@@ -15,7 +15,7 @@ methods
 %         self.loadSurf();
 
         %% setup objects
-        self.createObject('cup1.ply',transl(0,0,0));
+        self.createObject('person.ply',transl(0,0,0));
 %         self.createObject('fireExtinguisher.ply',transl(-2.8,2.8,0.5));
 %         self.createObject('fireExtinguisher.ply',transl(2.8,-2.8,0.5));
 %         self.createObject('button1.ply',transl(2,3,1));
@@ -27,7 +27,7 @@ methods
 
         axis equal;
         camlight;
-        % view(3);
+        view(3)
 
         hold off;
 
