@@ -11,7 +11,7 @@ classdef Environment < handle
 
             %Load Floor & Wall Images
             surf([-4,-4;4,4],[-4,4;-4,4],[10e-3,10e-3;10e-3,10e-3],'CData',imread('concrete.jpg'),'FaceColor','texturemap'); %Loads a concreate floor
-            surf([-4,-4;-4,-4],[-4,4;-4,4],[0,0;2.5,2.5],'CData',imread('brickWalls.jpg'),'FaceColor','texturemap'); %Loads a brick wall
+            surf([-4,-4;-4,-4],[-4,4;-4,4],[0,0;2.5,2.5],'CData',imread('brickWall.jpg'),'FaceColor','texturemap'); %Loads a brick wall
             surf([-4,4;-4,4],[-4,-4;-4,-4],[0,0;2.5,2.5],'CData',imread('brickWalls.jpg'),'FaceColor','texturemap'); %Loads a brick wall
 
             %Get the locations of the bricks
