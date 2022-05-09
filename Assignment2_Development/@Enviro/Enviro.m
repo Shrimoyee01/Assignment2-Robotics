@@ -59,19 +59,46 @@
 
 classdef Enviro < handle
     properties
+
+         
+
+
     end
     methods
         function self = Enviro()
             hold on;
             disp('setting up room...');
+            
+            % Define Object locations
+            CoffeeCup1Loc = [0.7,-1.2,1.03];
+            CoffeeCup2Loc = [0.5,-1.2,1.03];
+            CoffeeCup3Loc = [0.3,-1.2,1.03];
+
+            Person1Loc = [-0.5,-1,0.03];
+            Person2Loc = [-0.5,-1,0.03];
+            Person3Loc = [-0.5,-1,0.03];
+
+            CounterLoc = [0,-2.9,0.03];
+
 
             % Setup & Place Walls and Floor
             surf([-3,-3;3,3],[-3,3;-3,3],[10e-3,10e-3;10e-3,10e-3],'CData',imread('LightWoodenFloor.jpg'),'FaceColor','texturemap'); %Loads a wooden floor
             surf([-3,-3;-3,-3],[-3,3;-3,3],[0,0;2.5,2.5],'CData',imread('brickWalls.jpg'),'FaceColor','texturemap'); %Loads a brick wall
             surf([-3,3;-3,3],[-3,-3;-3,-3],[0,0;2.5,2.5],'CData',imread('Enterance.png'),'FaceColor','texturemap'); %Loads the cafe enterance
 
-            % Setup & Place Objects 
-            PlaceObject('counter.ply',[0,-2.9,0.03]);
+            % Setup & Place Static Objects 
+            PlaceObject('counter.ply',[CounterLoc(1),CounterLoc(2),CounterLoc(3)]);
+
+            % Setup & Place Dynamic Objects 
+            PlaceObject('cup5.ply',[CoffeeCup1Loc(1),CoffeeCup1Loc(2),CoffeeCup1Loc(3)]);
+            PlaceObject('cup5.ply',[CoffeeCup2Loc(1),CoffeeCup2Loc(2),CoffeeCup2Loc(3)]);
+            PlaceObject('cup5.ply',[CoffeeCup3Loc(1),CoffeeCup3Loc(2),CoffeeCup3Loc(3)]);
+
+            PlaceObject('person1.ply',[Person1Loc(1),Person1Loc(2),Person1Loc(3)]);
+%             PlaceObject('person2.ply',[Person2Loc(1),Person2Loc(2),Person2Loc(3)]);
+%             PlaceObject('person3.ply',[Person3Loc(1),Person3Loc(2),Person3Loc(3)]);
+           
+
 
             % Setup Camera
             axis equal;

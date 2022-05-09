@@ -8,7 +8,7 @@ robot1;      %UR3
 robot2;      %UR5
 robot1Base;  %UR3 Base Location
 robot2Base;  %UR5 Base Location
-
+ 
 %Setup Bricks Variables
 bricks;
 brickWallLocations;

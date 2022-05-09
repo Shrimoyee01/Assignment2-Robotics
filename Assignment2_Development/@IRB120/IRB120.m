@@ -53,20 +53,21 @@ classdef IRB120 < handle
             %limits found online
             %joint angle theta between the x, link offset d along the z, link length a along the x, link twist
             %alpha rotating the joint
-            L(1) = Link(['d',0,'a',0,'alpha',pi/2,'offset',0]); 
-            L(2) = Link(['d',0,'a',0,'alpha',pi/2,'offset',0]);
-            L(3) = Link(['d',0,'a',0,'alpha',pi/2,'offset',0]);
-            L(4) = Link(['d',0,'a',0,'alpha',pi/2,'offset',0]);
-            L(5) = Link(['d',0,'a',0,'alpha',pi/2,'offset',0]);
-            L(6) = Link(['d',0,'a',0,'alpha',pi/2,'offset',0]);
+            % DH Parameters for IRB120
+            l(1) = Link([0,     0.290, 0,    -pi/2]);
+            l(2) = Link([-pi/2, 0,     0.27, 0    ]);
+            l(3) = Link([0,     0,     0.07, -pi/2]);
+            l(4) = Link([0,     0.302, 0,    pi/2 ]);
+            l(5) = Link([0,     0,     0,    -pi/2]);
+            l(6) = Link([0,     0.072, 0,    0    ]);
 
-            % Incorporate joint limits
-            L(1).qlim = [-2*pi 2*pi];
-            L(2).qlim = [-2*pi 2*pi];
-            L(3).qlim = [-2*pi 2*pi];
-            L(4).qlim = [-2*pi 2*pi];
-            L(5).qlim = [-2*pi 2*pi];
-            L(6).qlim = [-2*pi 2*pi];
+%             % Incorporate joint limits
+%             L(1).qlim = [-2*pi 2*pi];
+%             L(2).qlim = [-2*pi 2*pi];
+%             L(3).qlim = [-2*pi 2*pi];
+%             L(4).qlim = [-2*pi 2*pi];
+%             L(5).qlim = [-2*pi 2*pi];
+%             L(6).qlim = [-2*pi 2*pi];
 
             self.model = SerialLink(L,'name',name, 'base', self.base ); 
 
@@ -76,7 +77,7 @@ classdef IRB120 < handle
         %% PlotAndColourRobot
         % Given a robot index, add the glyphs (vertices and faces) and
         % colour them in if data is available
-        function PlotAndColourRobot(self)%robot,workspace)
+        function PlotAndColourRobot(self) %robot,workspace)
             for linkIndex = 0:self.model.n
                 if self.useGripper && linkIndex == self.model.n
                     [ faceData, vertexData, plyData{linkIndex+1} ] = plyread(['120_Link',num2str(linkIndex),'Gripper.ply'],'tri'); %#ok<AGROW>
