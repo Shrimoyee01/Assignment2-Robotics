@@ -36,7 +36,7 @@ classdef UR3 < handle
             self.PlotAndColourRobot();%robot,workspace);
 
             % Workspace
-            self.sampleSpace();
+%             self.sampleSpace();
             
         end
 

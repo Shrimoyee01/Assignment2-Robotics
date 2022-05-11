@@ -40,13 +40,13 @@ hold off
 reachDistanceX = (max(sampleLineH(:,1))-min(sampleLineH(:,1)))/2;
 reachDistanceZ = max(sampleLineV(:,3))-min(sampleLineV(:,3));
 workspaceRadius = reachDistanceX;
-disp1 = ['UR3 workspace radius is ', num2str(workspaceRadius), 'm'];
+disp1 = ['Robot workspace radius is ', num2str(workspaceRadius), 'm'];
 disp(disp1);
 
 % Volume V=4/3*πr^3
 % caulating the spherical volume and then divided by 2 due to table
 workspaceVolume = (4/3*pi*reachDistanceX^3)/2;
-disp2 = ['UR3 workspace volume is ', num2str(workspaceVolume), 'm3'];
+disp2 = ['Robot workspace volume is ', num2str(workspaceVolume), 'm3'];
 disp(disp2);
 
 
