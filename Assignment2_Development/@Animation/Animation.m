@@ -1,4 +1,4 @@
-%%This class controls the location and movement of the robots and bricks
+%   %This class controls the location and movement of the robots and bricks
 %%within the animated wall building
 
 classdef Animation < handle
