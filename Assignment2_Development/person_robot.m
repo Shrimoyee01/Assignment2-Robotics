@@ -26,15 +26,15 @@ set(gca,'CameraViewAngleMode','Manual');
 % % Create a person
 % % Person();
 % % Person().PlotSingleRandomStep
-% % 
+% %
 % %  Plot the transform of the UAV starting at the origin (same as exercise 1)
 % % uavTR{1} = eye(4);
 % % trplot(uavTR{1})
-% % 
+% %
 % % for personIndex = 1:Person().cowCount
 % %     display(['At trajectoryStep ',num2str(personIndex),' the UAV TR to person ',num2str(personIndex),' is ']);
 % %     display(num2str(inv(uavTR{1}) * Person().cow{personIndex}.base));
-% % end  
+% % end
 % % Person().PlotSingleRandomStep();
 % % end
 
@@ -56,16 +56,17 @@ peopleHerd.PlotSingleRandomStep();
 numSteps=1;
 delay=0.1;
 for x=1:1:100
-peopleHerd.TestPlotManyStep(numSteps,delay);
-%     vecsize = size(cowHerd.cow{1}.base);
-%%cow1
-people1x = peopleHerd.people{1}.base(1,4);
-people1y = peopleHerd.people{1}.base(2,4);
-%%people 2
-people2x = peopleHerd.people{2}.base(1,4);
-people2y = peopleHerd.people{2}.base(2,4);
-tr1 = transl(people1x,people1y,5); %% Translates z axis + 10
-trplot(tr1);
-tr2 = transl(people2x,people2y,5); %% Translates z axis + 10
-trplot(tr2);
+    peopleHerd.TestPlotManyStep(numSteps,delay);
+    %     vecsize = size(cowHerd.cow{1}.base);
+    %%cow1
+    people1x = peopleHerd.people{1}.base(1,4);
+    people1y = peopleHerd.people{1}.base(2,4);
+    %%people 2
+    people2x = peopleHerd.people{2}.base(1,4);
+    people2y = peopleHerd.people{2}.base(2,4);
+    tr1 = transl(people1x,people1y,5); %% Translates z axis + 10
+    trplot(tr1);
+    tr2 = transl(people2x,people2y,5); %% Translates z axis + 10
+    trplot(tr2);
+end
 end
