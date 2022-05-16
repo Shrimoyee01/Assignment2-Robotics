@@ -15,8 +15,8 @@ nextEE = [1,-1.05,1.03+0.28];
 
 MoveRobot(nextEE)
 %LinearUR5(false,0.7,-1.05,1.03,90)
-nextEE = [0.5,0,1.2];
-MoveRobot(nextEE)
+% nextEE = [0.5,0,1.2];
+% MoveRobot(nextEE)
 
 %% Animation run
 animation = Animation();

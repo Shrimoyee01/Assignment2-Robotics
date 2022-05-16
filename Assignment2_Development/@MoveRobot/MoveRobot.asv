@@ -7,9 +7,7 @@ classdef MoveRobot < handle
         estop_;
         isHoldingCup_; %%if 
 
-        %%initialise in the constructor the moves sequence -> 
-        % cup 1 moves -> start to end location. brick wall moves 
-        % 
+        %%initialise in the constructor the moves sequence -?
     end
 
     methods
@@ -18,7 +16,7 @@ classdef MoveRobot < handle
 
             robot = IRB120(1,0.2,1.0).model;
             IRBEE = zeros(1,7);
-            robot.fkine(IRBEE); 
+            robot.fkine(IRBEE);
             currentEE = robot.fkine(IRBEE);
 
             EEx = currentEE(1,4);
@@ -41,9 +39,6 @@ classdef MoveRobot < handle
             T2L = transl(EEx2,EEy2,EEz2);                                                   % Define a translation matrix
             q2L = robot.ikcon(T2L,q1L);
 
-            location1 = transl(1,0,0);
-            cup1 = Thing("cup5",location1);
-
  
             % For UR5 - Interpolate joint angles, also calculate relative velocity, accleration
             qMatrixL = jtraj(q1L,q2L,steps);
@@ -62,16 +57,14 @@ classdef MoveRobot < handle
 
             for i = 1:steps
                 robot.plot(qMatrixL(i,:),'workspace', [-3 3 -3 3 -0.001 3], 'scale', 0, 'noarrow','fps', 120);
-                cup1position = robot.fkine(qMatrixL(i,:)); 
-                cup1.updatePosition(cup1position);
             end
 
-%             robot.fkine(qMatrixL(:,:,end));
+            robot.fkine(qMatrixL(:,:,end))
         end
 
 
     end
-%     function self = MoveRobot(nextEE)
-%     end
+    function self = MoveRobot(nextEE)
+    end
 end
 
