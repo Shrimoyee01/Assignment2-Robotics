@@ -142,7 +142,7 @@ function advancedTeach(robot, varargin)
 		else
 			robot.model.plot(q);
 		end
-		q = q
+		q = q;
 		handles.q = q;
 		T6 = robot.model.fkine(q);
 		
@@ -161,11 +161,11 @@ function advancedTeach(robot, varargin)
 				'BackgroundColor', bgcol, ...
 				'Position', [0 height*(n - j + 2) 0.15 height], ...
 				'FontUnits', 'normalized', ...
-				'FontSize', 0.5, ...
+				'FontSize', 0.4, ...
 				'String', sprintf('%c', xyzNames(1, j)));
 			
 			% slider itself
-			xyzLims = [[-1.5 -1.5 -0.561]; [1.5 1.5 0.561]];
+			xyzLims = [[-1.5 -1.5 -1]; [1.5 1.5 1]];
 			handles.slider(j) = uicontrol(panel, 'Style', 'slider', ...
 				'Units', 'normalized', ...
 				'Position', [0.15 height*(n - j + 2) 0.65 height], ...
@@ -182,7 +182,7 @@ function advancedTeach(robot, varargin)
 				'String', num2str(xyz(j, 1), 3), ...
 				'HorizontalAlignment', 'left', ...
 				'FontUnits', 'normalized', ...
-				'FontSize', 0.4, ...
+				'FontSize', 0.3, ...
 				'Tag', sprintf('Edit%c', xyzNames(1, j)));
 		end
 		
@@ -196,7 +196,7 @@ function advancedTeach(robot, varargin)
 				'BackgroundColor', bgcol, ...
 				'Position', [0 height*(nR - j + 5) 0.15 height], ...
 				'FontUnits', 'normalized', ...
-				'FontSize', 0.5, ...
+				'FontSize', 0.4, ...
 				'String', sprintf('q%d', j));
 			
 			% slider itself
@@ -217,7 +217,7 @@ function advancedTeach(robot, varargin)
 				'String', num2str(qscale(j)*q(j), 5), ...
 				'HorizontalAlignment', 'left', ...
 				'FontUnits', 'normalized', ...
-				'FontSize', 0.4, ...
+				'FontSize', 0.3, ...
 				'Tag', sprintf('Edit%d', j));
 		end
 		
@@ -424,8 +424,29 @@ function advTeach_callback(src, name, j, handles)
 		goalXYZ = currentXYZ;
 		goalXYZ(1, j) = newval;
 		goalTransform = transl(goalXYZ);
-		qMatrix = handles.robot.getJointQMatrix(currentJoints, goalTransform, 2);
-		handles.robot.animateRobot(qMatrix);
+
+% 		qMatrix = handles.robot.getJointQMatrix(currentJoints, goalTransform, 2);
+
+        %--- calculate the qmatrix using 2 steps 
+        numSteps = 2;
+        goalJoints = handles.robot.model.ikcon(goalTransform, currentJoints);
+        s = lspb(0, 1, numSteps);
+        qMatrix = nan(numSteps, 7); %-- make sure number of links is correct!
+        for i = 1 : numSteps
+        qMatrix(i, :) = currentJoints + s(i) * (goalJoints - currentJoints);
+        end 
+
+        %--- animate the robot to the new end effector position
+% 		handles.robot.animateRobot(qMatrix);
+        numStepsMtx = size(qMatrix);
+        numSteps = numStepsMtx(1);
+        for i = 1:numSteps
+            drawnow()
+            %animate robot motion
+            animate(handles.robot.model, qMatrix(i, :));
+        end
+
+
 		info.q = goalJoints;
 		set(h(1), 'UserData', info);
 		nQ = size(goalJoints);
