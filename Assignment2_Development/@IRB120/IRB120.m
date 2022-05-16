@@ -107,7 +107,7 @@ classdef IRB120 < handle
             self.model = SerialLink(L,'name','IRB');
 
             self.model.base = self.model.base * transl(self.xPos,self.yPos,self.zPos);
-            self.model.base = self.model.base * trotx(pi/2);
+            self.model.base = self.model.base * trotx(pi/2) * troty(pi);
 
 %             self.model.base = transl(0,0,0)*trotz(pi);
 
