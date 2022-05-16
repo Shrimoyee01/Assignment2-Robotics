@@ -81,7 +81,7 @@ classdef IRB120 < handle
             L(1) = Link([pi     0          0         pi/2   1]); % PRISMATIC Link
             L(2) = Link([0      0.29       0         -pi/2  0]); 
             L(3) = Link([-pi/2  0          0.27      0      0]);
-            L(4) = Link([0      0         -0.07      -pi/2  0]);
+            L(4) = Link([0      0          0.07      -pi/2  0]);
             L(5) = Link([0      0.302      0         pi/2   0]);
             L(6) = Link([0      0          0         -pi/2  0]);
             L(7) = Link([0      0.072      0          0     0]);
