@@ -8,9 +8,9 @@ clf
 clear all
 clc
 
-Enviro();
+CafeEnvironment();
 
-nextEE = [1,-1.05,1.03];
+nextEE = [1,-1.05,1.03+0.28];
 %IRB120(1,-0.6,1.05).model;
 
 MoveRobot(nextEE)
@@ -33,4 +33,16 @@ clc
 robot = IRB120(1,-0.6,1.05).model;
 
 robot.advancedTeach
+
+%%
+clf
+clear all
+clc
+
+%CafeEnvironment();
+
+
+IRB120(1,-0.6,1.05).model;
+
+
 

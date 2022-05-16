@@ -10,19 +10,17 @@ classdef IRB120 < handle
         %> Flag to indicate if gripper is used
         useGripper = false;
 
-        %> robotic base location
-        %base;
 
         %> robotic base location
         maxWorkspace;
-        
+
         %>
         xPos;
         yPos;
         zPos;
         zYaw;
 
-        
+
         qlim;
 
     end
@@ -30,18 +28,11 @@ classdef IRB120 < handle
     methods%% Class for UR5 robot simulation
         function self = IRB120(xPosition, yPosition, zPosition)
 
-            %> Catch function for if a base is supplied wwith less than 1 input.
-%             if nargin < 1
-%                 base = transl(0, 0, 0);
-%             end
-
-            %self.base = base;
-
             %> Position for base of robot
             self.xPos = xPosition;
             self.yPos = yPosition;
             self.zPos = zPosition;
-            %self.zYaw = (zYawAmount/360*pi*2);
+
 
             % robot =
             self.GetIRB120Robot();
@@ -50,8 +41,8 @@ classdef IRB120 < handle
             self.PlotAndColourRobot();
 
             % Workspace
-%             self.sampleSpace();
-            
+            %             self.sampleSpace();
+
         end
 
         %% GetUR3Robot
@@ -61,31 +52,16 @@ classdef IRB120 < handle
             % Create a unique name (ms timestamp after 1ms pause)
             pause(0.001);
             name = ['IRB120_',datestr(now,'yyyymmddTHHMMSSFFF')];
-            %     end
 
-            % Create the IRB 120 model
-            %limits found online
-            %joint angle theta between the x, link offset d along the z, link length a along the x, link twist
-            %alpha rotating the joint
-            % DH Parameters for IRB120
-            %file:///C:/Users/aesti/Downloads/1035-Article%20Text-1000-1-10-20211218.pdf
-
-%             l(1) = Link(['d',290,'a',0,   'alpha',pi/2, 'theta', -pi]);
-%             l(2) = Link(['d',0,  'a',-270,'alpha',0,    'theta', -pi/2]);
-%             l(3) = Link(['d',0,  'a',-70, 'alpha',pi/2, 'theta', 0]);
-%             l(4) = Link(['d',302,'a',0,   'alpha',pi/2, 'theta', pi]);
-%             l(5) = Link(['d',0,  'a',0,   'alpha',pi/2, 'theta', pi]);
-%             l(6) = Link(['d',72, 'a',0,   'alpha',0,    'theta', 0]);
 
             % theta=q, d=0, a=0, alpha=0, offset=0
             L(1) = Link([pi     0          0         pi/2   1]); % PRISMATIC Link
-            L(2) = Link([0      0.29       0         -pi/2  0]); 
+            L(2) = Link([0      0.29       0         -pi/2  0]);
             L(3) = Link([-pi/2  0          0.27      0      0]);
             L(4) = Link([0      0          0.07      -pi/2  0]);
             L(5) = Link([0      0.302      0         pi/2   0]);
             L(6) = Link([0      0          0         -pi/2  0]);
             L(7) = Link([0      0.072      0          0     0]);
-
 
             % Incorporate joint limits
             L(1).qlim = [-0.8 0];
@@ -96,20 +72,15 @@ classdef IRB120 < handle
             L(6).qlim = [-120 120]*pi/180;
             L(7).qlim = [-400 400]*pi/180;
 
-
             L(2).offset =  -pi;
             L(3).offset =  -pi/2;
             L(5).offset =  pi;
             L(6).offset =  pi;
 
-            
-            %self.model = SerialLink(L,'name',name, 'base', self.base ); 
             self.model = SerialLink(L,'name','IRB');
 
             self.model.base = self.model.base * transl(self.xPos,self.yPos,self.zPos);
             self.model.base = self.model.base * trotx(pi/2) * troty(pi);
-
-%             self.model.base = transl(0,0,0)*trotz(pi);
 
         end
         %% PlotAndColourRobot
