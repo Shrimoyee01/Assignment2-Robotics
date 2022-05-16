@@ -4,8 +4,9 @@ clf
 
 % PlaceObject('R120Link1.ply',[transl(0,0,0)]);
 camlight
-robot = IRB120();
-robot.model.teach
+% robot = IRB120test();
+robot = IRB120(0,0,0);
+robot.advancedTeach;
 
 % robot = UR3();
 % robot.model.teach
