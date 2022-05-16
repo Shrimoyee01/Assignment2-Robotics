@@ -60,6 +60,14 @@ classdef LinearUR5 < handle
             L(6).qlim = [-360 360]*pi/180;
             L(7).qlim = [-360 360]*pi/180;
 
+%             L(1).qlim = [-0.8 0];
+%             L(2).qlim = [-180 180]*pi/180;
+%             L(3).qlim = [-110 110]*pi/180;
+%             L(4).qlim = [-110 70]*pi/180;
+%             L(5).qlim = [-160 160]*pi/180;
+%             L(6).qlim = [-120 120]*pi/180;
+%             L(7).qlim = [-400 400]*pi/180;
+
             L(3).offset = -pi/2;
             L(5).offset = -pi/2;
 

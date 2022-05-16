@@ -52,12 +52,12 @@ classdef MoveRobots < handle
             disp("Press Enter To Continue");
             pause;
 
-            for i = 1:9                
-                
+            for i = 1:9
+
                 % Load Current End Effector Positons
                 robotUR3.fkine(currentUR3EE);
                 robotUR5.fkine(currentUR5EE);
-                
+
                 % For UR3 - Define End-Effector transformation, use inverse kinematics to get joint angles
                 q0 = zeros(1,6);
                 T1 = transl(0.8,0.3,0.6);                                                  % Create translation matrix
@@ -71,6 +71,12 @@ classdef MoveRobots < handle
                 q1L = robotUR5.ikcon(T1L,q0L);                                                        % Derive joint angles for required end-effector transformation
                 T2L = transl(UR5BrickList{1,i}(1,1),UR5BrickList{1,i}(1,2),UR5BrickList{1,i}(1,3)+0.1);                                                   % Define a translation matrix
                 q2L = robotUR5.ikcon(T2L,q1L);
+
+                disp("q1L")
+                disp(q1L)
+                disp("q2L")
+                disp(q2L)
+                pause;
 
                 % For UR3 - Interpolate joint angles, also calculate relative velocity, accleration
                 qMatrix = jtraj(q1,q2,steps);
@@ -116,7 +122,7 @@ classdef MoveRobots < handle
 
                 currentUR3EE = qMatrix(:,:,end);
                 currentUR5EE = qMatrixL(:,:,end);
-                
+
                 disp("Press Enter To Continue To Moving To The Next Brick");
                 pause;
 

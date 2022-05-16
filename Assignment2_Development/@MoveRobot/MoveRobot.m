@@ -13,12 +13,13 @@ classdef MoveRobot < handle
             %MOVEROBOT Construct an instance of this class
             %   Detailed explanation goes here
             robot = IRB120(1,-0.6,1.05).model;
-            %robot = IRB120(0,0,0).model;
+            %robot = IRB1206dof(1,-0.6,1.05).model;
+
 
             IRBEE = zeros(1,7);
             robot.fkine(IRBEE);
             currentEE = robot.fkine(IRBEE);
-            
+
             EEx = currentEE(1,4);
             EEy = currentEE(2,4);
             EEz = currentEE(3,4);
@@ -27,21 +28,35 @@ classdef MoveRobot < handle
             EEy2 = nextEE(2);
             EEz2 = nextEE(3);
 
+            disp("Current Position")
+            disp(EEx)
+            disp(EEy)
+            disp(EEz)
+            disp("Next Position")
             disp(EEx2)
             disp(EEy2)
             disp(EEz2)
 
-%             disp("Press Enter To Continue To Moving To The Next Brick");
-%             pause;
+            disp("Press Enter To Pick Up Coffee");
+            pause;
 
             interpolation = 2;                                                         % 1 = Quintic Polynomial, 2 = Trapezoidal Velocity
             steps = 80;
 
             q0L = zeros(1,7);
             T1L = transl(EEx,EEy,EEz);                                                  % Create translation matrix
+            %T1L = transl(0.8,0.3,0.6);
             q1L = robot.ikcon(T1L,q0L);                                                        % Derive joint angles for required end-effector transformation
             T2L = transl(EEx2,EEy2,EEz2);                                                   % Define a translation matrix
             q2L = robot.ikcon(T2L,q1L);
+            %q2L = [0 1.005 1.850 -0.974 0 0 0];
+            %checkEEPos = robot.fkine(q2L);
+
+            disp("q1L")
+            disp(q1L)
+            disp("q2L")
+            disp(q2L)
+            pause;
 
             % For UR5 - Interpolate joint angles, also calculate relative velocity, accleration
             qMatrixL = jtraj(q1L,q2L,steps);

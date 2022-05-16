@@ -11,9 +11,10 @@ clc
 Enviro();
 
 nextEE = [0.7,-1.05,1.03];
-IRB120(1,-0.6,1.05).model;
+%IRB120(1,-0.6,1.05).model;
 
-%MoveRobot(nextEE)
+MoveRobot(nextEE)
+%LinearUR5(false,0.7,-1.05,1.03,90)
 
 %% Animation run
 animation = Animation();
@@ -77,4 +78,8 @@ EEz = currentEE(3,4)
 clf
 clear all
 clc
-robot = IRB120(0.5,0.3,1.1).model;
+
+robot = IRB120(1,-0.6,1.05).model;
+
+robot.teach
+

@@ -1,5 +1,5 @@
 %%UR3 Class
-classdef IRB120 < handle
+classdef IRB1206dof < handle
     properties
         %> Robot model
         model;
@@ -28,7 +28,7 @@ classdef IRB120 < handle
     end
 
     methods%% Class for UR5 robot simulation
-        function self = IRB120(xPosition, yPosition, zPosition)
+        function self = IRB1206dof(xPosition, yPosition, zPosition)
 
             %> Catch function for if a base is supplied wwith less than 1 input.
 %             if nargin < 1
@@ -56,7 +56,7 @@ classdef IRB120 < handle
 
         %% GetUR3Robot
         % Given a name (optional), create and return a UR3 robot model
-        function GetIRB120Robot(self)
+        function GetIRB1206dofRobot(self)
             %     if nargin < 1
             % Create a unique name (ms timestamp after 1ms pause)
             pause(0.001);
@@ -78,36 +78,34 @@ classdef IRB120 < handle
 %             l(6) = Link(['d',72, 'a',0,   'alpha',0,    'theta', 0]);
 
             % theta=q, d=0, a=0, alpha=0, offset=0
-            L(1) = Link([pi     0          0         pi/2   1]); % PRISMATIC Link
-            L(2) = Link([0      0.29       0         -pi/2  0]); 
-            L(3) = Link([-pi/2  0          0.27      0      0]);
-            L(4) = Link([0      0         -0.07      -pi/2  0]);
-            L(5) = Link([0      0.302      0         pi/2   0]);
-            L(6) = Link([0      0          0         -pi/2  0]);
-            L(7) = Link([0      0.072      0          0     0]);
+            L(1) = Link([0      0.29       0         pi/2   0]); 
+            L(2) = Link([0      0         -0.27      0      0]);
+            L(3) = Link([0      0         -0.07      pi/2   0]);
+            L(4) = Link([0      0.302      0         pi/2   0]);
+            L(5) = Link([0      0          0         pi/2   0]);
+            L(6) = Link([0      0.072      0          0     0]);
 
 
             % Incorporate joint limits
-            L(1).qlim = [-0.8 0];
-            L(2).qlim = [-180 180]*pi/180;
-            L(3).qlim = [-110 110]*pi/180;
-            L(4).qlim = [-110 70]*pi/180;
-            L(5).qlim = [-160 160]*pi/180;
-            L(6).qlim = [-120 120]*pi/180;
-            L(7).qlim = [-400 400]*pi/180;
+            L(1).qlim = [-180 180]*pi/180;
+            L(2).qlim = [-110 110]*pi/180;
+            L(3).qlim = [-110 70]*pi/180;
+            L(4).qlim = [-160 160]*pi/180;
+            L(5).qlim = [-120 120]*pi/180;
+            L(6).qlim = [-400 400]*pi/180;
 
 
-            L(2).offset =  -pi;
-            L(3).offset =  -pi/2;
+            L(1).offset =  -pi;
+            L(2).offset =  -pi/2;
+            L(4).offset =  pi;
             L(5).offset =  pi;
-            L(6).offset =  pi;
 
             
             %self.model = SerialLink(L,'name',name, 'base', self.base ); 
             self.model = SerialLink(L,'name','IRB');
 
             self.model.base = self.model.base * transl(self.xPos,self.yPos,self.zPos);
-            self.model.base = self.model.base * trotx(pi/2);
+            self.model.base = self.model.base * trotz(pi);
 
 %             self.model.base = transl(0,0,0)*trotz(pi);
 
