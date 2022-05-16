@@ -20,7 +20,14 @@ set(gca,'CameraViewAngleMode','Manual');
 %
 % PlaceObject('person1.ply',[Person1Loc(1),Person1Loc(2),Person1Loc(3)]);
 
-
+    function Person()
+        [f,v,data] = plyread('person1.ply','tri');
+        vertexColours = [data.vertex.red, data.vertex.green, data.vertex.blue] / 255; %% Scale the colours to be 0-to-1 (they are originally 0 to 255)
+        
+        trisurf(f,v(:,1),v(:,2) , v(:,3) ... % Then plot the trisurf with offset verticies
+            ,'FaceVertexCData',vertexColours,'EdgeColor','interp','EdgeLighting','flat');
+        hold on;
+    end
 
 
 % % Create a person
@@ -41,31 +48,22 @@ set(gca,'CameraViewAngleMode','Manual');
 %% EDIT THIS!!
 clf;
 clear all;
-try delete(peopleHerd); end;
-
-    function Person()
-        [f,v,data] = plyread('person1.ply','tri');
-        vertexColours = [data.vertex.red, data.vertex.green, data.vertex.blue] / 255; %% Scale the colours to be 0-to-1 (they are originally 0 to 255)
-        
-        trisurf(f,v(:,1),v(:,2) , v(:,3) ... % Then plot the trisurf with offset verticies
-            ,'FaceVertexCData',vertexColours,'EdgeColor','interp','EdgeLighting','flat');
-        hold on;
-    end
-peopleHerd = Person(2);
-peopleHerd.PlotSingleRandomStep();
+try delete(cowHerd); end;
+cowHerd = RobotCows(2);
+cowHerd.PlotSingleRandomStep();
 numSteps=1;
 delay=0.1;
 for x=1:1:100
-peopleHerd.TestPlotManyStep(numSteps,delay);
+cowHerd.TestPlotManyStep(numSteps,delay);
 %     vecsize = size(cowHerd.cow{1}.base);
 %%cow1
-people1x = peopleHerd.people{1}.base(1,4);
-people1y = peopleHerd.people{1}.base(2,4);
-%%people 2
-people2x = peopleHerd.people{2}.base(1,4);
-people2y = peopleHerd.people{2}.base(2,4);
-tr1 = transl(people1x,people1y,5); %% Translates z axis + 10
+cow1x = cowHerd.cow{1}.base(1,4);
+cow1y = cowHerd.cow{1}.base(2,4);
+%%cow 2
+cow2x = cowHerd.cow{2}.base(1,4);
+cow2y = cowHerd.cow{2}.base(2,4);
+tr1 = transl(cow1x,cow1y,5); %% Translates z axis + 10
 trplot(tr1);
-tr2 = transl(people2x,people2y,5); %% Translates z axis + 10
+tr2 = transl(cow2x,cow2y,5); %% Translates z axis + 10
 trplot(tr2);
 end

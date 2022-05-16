@@ -70,15 +70,15 @@ classdef Enviro < handle
             disp('setting up room...');
             
             % Define Object locations
-            CoffeeCup1Loc = [0.7,-1.2,1.03];
-            CoffeeCup2Loc = [0.5,-1.2,1.03];
-            CoffeeCup3Loc = [0.3,-1.2,1.03];
+            CoffeeCup1Loc = [1.2,-1.05,1.03];
+            CoffeeCup2Loc = [1,-1.05,1.03];
+            CoffeeCup3Loc = [0.8,-1.05,1.03];
 
-            Person1Loc = [-0.5,-1,0.03];
+            Person1Loc = [-0.7,-1,0.03];
             Person2Loc = [-0.5,-1,0.03];
             Person3Loc = [-0.5,-1,0.03];
 
-            CounterLoc = [0,-2.9,0.03];
+            CounterLoc = [0.5,-2.9,0.03];
 
 
             % Setup & Place Walls and Floor
@@ -88,6 +88,12 @@ classdef Enviro < handle
 
             % Setup & Place Static Objects 
             PlaceObject('counter.ply',[CounterLoc(1),CounterLoc(2),CounterLoc(3)]);
+            PlaceObject('barrier.ply',[0.2,0.35,1]);
+            PlaceObject('bin.ply',[-2.7,-2.7,0.1]);
+            PlaceObject('camera.ply',[0.7,-2.1,1.28]);
+            PlaceObject('table.ply',[-2,2.2,0]);
+            PlaceObject('lights.ply',[0.6,1.5,1.03]);
+            PlaceObject('lights.ply',[0.6,-1.2,1.03]);
 
             % Setup & Place Dynamic Objects 
             PlaceObject('cup5.ply',[CoffeeCup1Loc(1),CoffeeCup1Loc(2),CoffeeCup1Loc(3)]);
