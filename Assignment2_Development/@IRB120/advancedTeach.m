@@ -372,19 +372,19 @@ function advancedTeach(robot, varargin)
         % text edit box
         set(handles.edit(j), ...
             'Interruptible', 'off', ...
-            'Callback', @(src,event)advTeach_callback(src, robot.model.name, j, handles));
+            'Callback', @(src,event)advancedTeach_callback(src, robot.model.name, j, handles));
         
         % slider
         set(handles.slider(j), ...
             'Interruptible', 'off', ...
             'BusyAction', 'queue', ...
-            'Callback', @(src,event)advTeach_callback(src, robot.model.name, j, handles));
+            'Callback', @(src,event)advancedTeach_callback(src, robot.model.name, j, handles));
 	end
 end
 
 
-%% advTeach Callback
-function advTeach_callback(src, name, j, handles)
+%% advancedTeach Callback
+function advancedTeach_callback(src, name, j, handles)
 
     % called on changes to a slider or to the edit box showing joint coordinate
     %
@@ -402,7 +402,7 @@ function advTeach_callback(src, name, j, handles)
 		error('RTB:teach:badarg', 'No graphical robot of this name found');
 	end
 	
-	%Find current coordinates
+	%--- Find current coordinates
 	currentXYZ  = [get(handles.slider(1), 'Value'), get(handles.slider(2), 'Value'), get(handles.slider(3), 'Value')];
     %currentXYZ = [str2double(get(handles.t6.t(1), 'String')) str2double(get(handles.t6.t(2), 'String')) str2double(get(handles.t6.t(3), 'String'))]';
 	info = get(h(1), 'UserData');
@@ -431,7 +431,11 @@ function advTeach_callback(src, name, j, handles)
         numSteps = 2;
         goalJoints = handles.robot.model.ikcon(goalTransform, currentJoints);
         s = lspb(0, 1, numSteps);
-        qMatrix = nan(numSteps, 7); %-- make sure number of links is correct!
+        %get number of joints for this robot (this allows for portability
+        %of the function between other robots
+        nQ = size(goalJoints); 
+		nQ = nQ(1, 2);
+        qMatrix = nan(numSteps, nQ); %-- nQ is the number of joints
         for i = 1 : numSteps
         qMatrix(i, :) = currentJoints + s(i) * (goalJoints - currentJoints);
         end 
@@ -470,10 +474,18 @@ function advTeach_callback(src, name, j, handles)
 		info.q(j - 3) = newval;
 		set(h(1), 'UserData', info);
 		animate(handles.robot.model, info.q);
+
 	end
 	
-	T6 = handles.robot.model.fkine(info.q);
-	% convert orientation to desired format
+    T6 = handles.robot.model.fkine(info.q);
+
+    % -- update the xyz if the joints are changed
+    for j = 1:3
+    set(handles.slider(j), 'Value', T6(j, 4));
+	set(handles.edit(j), 'String', num2str(T6(j, 4), 3));
+    end
+	
+    % convert orientation to desired format
 	switch handles.orientation
 		case 'approach'
 			orient = T6(:,3);    % approach vector
@@ -483,13 +495,12 @@ function advTeach_callback(src, name, j, handles)
 			orient = tr2rpy(T6, 'setopt', handles.opt);
 	end
 	
-	% update the display in the teach window
+	% update the top display in the teach window
     for i = 1:3
-        set(handles.t6.t(i), 'String', sprintf('%.3f', T6(i, 4)));
-        set(handles.t6.r(i), 'String', sprintf('%.3f', orient(i)));
-% 		posVal = str2double(get(handles.t6.t(i), 'String'));
-% 		set(handles.slider(i), 'Value', posVal);
-% 		set(handles.edit(i), 'String', num2str(posVal));
+        set(handles.t6.t(i), 'String', sprintf('%.3f', T6(i, 4))); %XYZ
+        set(handles.t6.r(i), 'String', sprintf('%.3f', orient(i))); %RPY
+
+
 	end
     
     if ~isempty(handles.callback)
