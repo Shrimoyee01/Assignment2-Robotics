@@ -63,24 +63,11 @@ pause;
 
 cup1.updatePosition(transl(0,1,0.5));
 
-%%
-clf
-clear all
-clc
-
-%CafeEnvironment();
-
-nextEE = [1, -1.05, 1.03+0.28];
-
-Ani = Animate(nextEE);
-Ani.MoveRobotAndCupTo();
 
 %%
 clf
 clear all
 clc
-robot = IRB120(0,0,0).model;
-IRBEE = [0.77 0.2 1.63];
-
-robot.ikines(IRBEE)
+CafeEnvironment();
+Test();
 
