@@ -23,7 +23,7 @@ function [cupStartLocations, cupEndLocations, robotBase ...
 %     cupEndLocations{1}= transl( robotBase(1,1) ,0.5, 0.5  );
 %     cupEndLocations{2}= transl( robotBase(1,1) ,0.5, 0  );
 %     cupEndLocations{3}= transl( robotBase(1,1) ,0.5, 0  );
-    cupEndLocations{1}= transl( 0.5 ,0, 1.5  );
+    cupEndLocations{1}= transl( 0.5 ,0, 1.7  );
     cupEndLocations{2}= transl( 0.5 ,0, 1.5  );
     cupEndLocations{3}= transl( 0.5 ,0, 1.5  );
 
