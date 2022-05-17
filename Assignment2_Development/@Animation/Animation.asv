@@ -13,6 +13,7 @@ classdef Animation < handle
         robot;      %IRB120
         robotBase;  %IRB120 Base Location
 
+
         %Setup Cup Variables
         cups;
         cupEndLocations;
@@ -26,6 +27,7 @@ classdef Animation < handle
         %Animation Variables
         qMatrix;
         orderNo;
+
     end
 
     methods
@@ -45,10 +47,12 @@ classdef Animation < handle
             self.personStartLocation = personStartLocation;
             self.personEndLocation = personEndLocation;
 
+
             %initiate the robot
             robot = IRB120(1, 0.2, 1.03);
             self.robot = robot;
             robot.advancedTeach;
+
 
             %make an array of cup
             for i = 1:3
@@ -69,6 +73,7 @@ classdef Animation < handle
 
             % reset the view range
             axis([-3 3 -3 3 0 2.5]);
+
 
             %--------GUI properties
             self.estop = 0; 
