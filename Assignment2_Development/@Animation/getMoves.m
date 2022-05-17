@@ -7,7 +7,7 @@ function [cup, cupMoving, person, personMoving, cupTR] = getMoves(self)
     % Drop cup off
 
 % ZeroPosition = transl(0.77,0.2,1.66); %%end effector position when q=[0,7]
-ZeroPosition = [-0 0 1 0.77; 0 -1 0 0.20; 1 0 0 1.63; 0 0 0 1];
+ZeroPosition = [-0 0 1 0.7; 0 -1 0 0.20; 1 0 0 1.66; 0 0 0 1];
 
 %% move1 robot1->cup1 
 cup{1} = self.cups{1}; %pick up cup
