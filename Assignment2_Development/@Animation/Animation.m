@@ -36,7 +36,8 @@ classdef Animation < handle
             % robot Location
             % cup start and end locations
             % ->getStartingPositions
-            [cupStartLocations, cupEndLocations,personStartLocation, personEndLocation, robotBase] = self.getStartingPositions();
+            [cupStartLocations, cupEndLocations,personStartLocation, ...
+                personEndLocation, robotBase] = self.getStartingPositions();
 
             %store the variables in the object
             self.robotBase = robotBase;
@@ -86,7 +87,6 @@ classdef Animation < handle
                     case 0
                         pause(1);
                     case 1
-                        disp("Order Number 1");
                         OrderNo = 1;
                         %animate the movement for each robot
                         for k = 1:4
@@ -95,9 +95,9 @@ classdef Animation < handle
                         self.orderReady = 0;
                         self.startRobot = 0;
                         self.robotRunning = 0;
+                        disp("Order Number 1 delivered!");
                     case 2
                         %animate the movement for each robot
-                        disp("Order Number 2");
                         OrderNo = 2;
                         for l = 5:8
                             self.animateRobot(self.robot.model, self.qMatrix{l}, cup{l}, cupMoving{l},person{l}, personMoving{l},OrderNo);
@@ -105,8 +105,8 @@ classdef Animation < handle
                         self.orderReady = 0;
                         self.startRobot = 0;
                         self.robotRunning = 0;
+                        disp("Order Number 2 delivered!");
                     case 3
-                        disp("Order Number 3");
                         OrderNo = 3;
                         %animate the movement for each robot
                         for h = 9:12
@@ -116,6 +116,7 @@ classdef Animation < handle
                         self.orderReady = 0;
                         self.startRobot = 0;
                         self.robotRunning = 0;
+                        disp("Order Number 3 delivered!");
                 end
             end
             %------------------------------------------------
@@ -194,7 +195,7 @@ classdef Animation < handle
                             if i > 25 %person moving back with the cup
                                 matrix = [-0.9/25;0;0];
                                 cupPos = cupPos+matrix;
-                                tester = transl(cupPos)*transl(0,0,-0.25); %added a transl down so the cup is in hand
+                                tester = transl(cupPos);%*transl(0,0,-0.25); %added a transl down so the cup is in hand
                                 cup.updatePosition(tester);
                             end
 
@@ -219,14 +220,14 @@ classdef Animation < handle
                             if i <= 45 && i > 30
                                 matrix = [0;-1.15/15;0];
                                 cupPos = cupPos+matrix;
-                                tester = transl(cupPos)*transl(0,0,-0.25); %added a transl down so the cup is in hand
+                                tester = transl(cupPos);%*transl(0,0,-0.25); %added a transl down so the cup is in hand
                                 cup.updatePosition(tester);
                             end
 
                             if i <=50 && i > 45
                                 matrix = [-0.9/5;0;0];
                                 cupPos = cupPos+matrix;
-                                tester = transl(cupPos)*transl(0,0,-0.25); %added a transl down so the cup is in hand
+                                tester = transl(cupPos);%*transl(0,0,-0.25); %added a transl down so the cup is in hand
                                 cup.updatePosition(tester);
                             end
 
@@ -248,14 +249,14 @@ classdef Animation < handle
                             if i <= 45 && i > 30
                                 matrix = [0;-2.15/15;0];
                                 cupPos = cupPos+matrix;
-                                tester = transl(cupPos)*transl(0,0,-0.25); %added a transl down so the cup is in hand
+                                tester = transl(cupPos);%*transl(0,0,-0.25); %added a transl down so the cup is in hand
                                 cup.updatePosition(tester);
                             end
 
                             if i <= 50 && i > 45
                                 matrix = [-0.9/5;0;0];
                                 cupPos = cupPos+matrix;
-                                tester = transl(cupPos)*transl(0,0,-0.25); %added a transl down so the cup is in hand
+                                tester = transl(cupPos);%*transl(0,0,-0.25); %added a transl down so the cup is in hand
                                 cup.updatePosition(tester);
                             end
 

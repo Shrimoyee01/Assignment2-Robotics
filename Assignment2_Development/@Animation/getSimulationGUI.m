@@ -113,16 +113,19 @@ end
 function order1_callback(src, self, handles)
 	self.orderReady = 1;
     self.startRobot = 1;
+    disp("Delivering order 1...");
 end
 
 function order2_callback(src, self, handles)
 	self.orderReady = 2;
     self.startRobot = 1;
+    disp("Delivering order 2...");
 end
 
 function order3_callback(src, self, handles)
 	self.orderReady = 3;
     self.startRobot = 1;
+    disp("Delivering order 3...");
 end
 
 function emergencyStop_callback(src, self, handles)
@@ -133,16 +136,19 @@ if(button_state == 1)
     set(handles.emergencyStop,'string','Release','foregroundcolor','blue','BackgroundColor', '#B2BEB5')
 	self.estop = 1;
     self.robotRunning = 0;
+    disp("WARNING! EMERGENCY STOP HAS BEEN ENGAGED!");
 else
 %     set(handles.emergencyStop,'string','release','foregroundcolor','blue','BackgroundColor', 'grey')
    set(handles.emergencyStop,'String','E-STOP','ForegroundColor','red', 'BackgroundColor', 'white')
    self.estop = 0;
+   disp("Emergency Stop has been released");
 end
 end
 
 function continue_callback(src, self, handles)
     if self.estop == 0
 	self.robotRunning = 1;
+    disp("Continue delivery...");
     end
 end
 
