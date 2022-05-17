@@ -183,6 +183,7 @@ classdef Test < handle
 
                         end
 
+                        %For order 1
                         if OrderNo == 1
                             if i > 25
                                 matrix = [-0.9/25;0;0];
@@ -190,14 +191,71 @@ classdef Test < handle
                                 tester = transl(cupPos);
                                 cup.updatePosition(tester);
                             end
+
                             if i <= 25
                                 matrix = [0.9/25;0;0];
                             end
                             currentPos = currentPos+matrix;
-%                             disp("//////////////")
-%                             disp(currentPos)
-%                             disp(cupPos)
+                            personPos = transl(currentPos);
+                            person.updatePosition(personPos);
+                        end
+
+                        %For order 2
+                        if OrderNo == 2
+                            if i <= 15
+                                matrix = [0.9/15;0;0];
+                            end
+
+                            if i <= 30 && i > 15
+                                matrix = [0;1.15/15;0];
+                            end
+
+                            if i <= 45 && i > 30
+                                matrix = [0;-1.15/15;0];
+                                cupPos = cupPos+matrix;
+                                tester = transl(cupPos);
+                                cup.updatePosition(tester);
+                            end
+
+                            if i <=50 && i > 45
+                                matrix = [-0.9/5;0;0];
+                                cupPos = cupPos+matrix;
+                                tester = transl(cupPos);
+                                cup.updatePosition(tester);
+                            end
+
+                            currentPos = currentPos+matrix;
+                            personPos = transl(currentPos);
+                            person.updatePosition(personPos);
+                        end
+
+                        %For order 3
+                        if OrderNo == 3
+                            if i <= 15
+                                matrix = [0.9/15;0;0];
+                            end
+
+                            if i <= 30 && i > 15
+                                matrix = [0;2.15/15;0];
+                            end
+
+                            if i <= 45 && i > 30
+                                matrix = [0;-2.15/15;0];
+                                cupPos = cupPos+matrix;
+                                tester = transl(cupPos);
+                                cup.updatePosition(tester);
+                            end
+
+                            if i <= 50 && i > 45
+                                matrix = [-0.9/5;0;0];
+                                cupPos = cupPos+matrix;
+                                tester = transl(cupPos);
+                                cup.updatePosition(tester);
+                            end
+
                             
+
+                            currentPos = currentPos+matrix;
                             personPos = transl(currentPos);
                             person.updatePosition(personPos);
                         end
