@@ -74,7 +74,7 @@ classdef CafeEnvironment < handle
 %             CoffeeCup2Loc = [1,-1.05,1.03];
 %             CoffeeCup3Loc = [0.8,-1.05,1.03];
 
-            Person1Loc = [-0.7,-1,0.03];
+            Person1Loc = [-1,0.15,0.03];
             Person2Loc = [-0.5,-1,0.03];
             Person3Loc = [-0.5,-1,0.03];
 
@@ -100,7 +100,7 @@ classdef CafeEnvironment < handle
 %             PlaceObject('cup5.ply',[CoffeeCup2Loc(1),CoffeeCup2Loc(2),CoffeeCup2Loc(3)]);
 %             PlaceObject('cup5.ply',[CoffeeCup3Loc(1),CoffeeCup3Loc(2),CoffeeCup3Loc(3)]);
 
-            PlaceObject('person5.ply',[Person1Loc(1),Person1Loc(2),Person1Loc(3)]);
+%             PlaceObject('person7.ply',[Person1Loc(1),Person1Loc(2),Person1Loc(3)]);
 %             PlaceObject('person2.ply',[Person2Loc(1),Person2Loc(2),Person2Loc(3)]);
 %             PlaceObject('person3.ply',[Person3Loc(1),Person3Loc(2),Person3Loc(3)]);
            

@@ -13,10 +13,15 @@ classdef Test < handle
         robotBase;  %UR3 Base Location
 
 
-        %Setup Bricks Variables
+        %Setup Cup Variables
         cups;
         cupEndLocations;
         cupStartLocations;
+         
+        %Setup Person Variables
+        person;
+        personStartLocation;
+        personEndLocation;
 
         %Animation Variables
         qMatrix;
@@ -31,12 +36,14 @@ classdef Test < handle
             % robot Location
             % cup start and end locations
             % ->getStartingPositions
-            [cupStartLocations, cupEndLocations, robotBase] = self.getStartingPositions();
+            [cupStartLocations, cupEndLocations,personStartLocation, personEndLocation, robotBase] = self.getStartingPositions();
 
             %store the variables in the object
             self.robotBase = robotBase;
             self.cupStartLocations = cupStartLocations;
             self.cupEndLocations = cupEndLocations;
+            self.personStartLocation = personStartLocation;
+            self.personEndLocation = personEndLocation;
 
 
             %initiate the robots
@@ -47,8 +54,13 @@ classdef Test < handle
                 self.cups{i} = Thing("cup5",self.cupStartLocations{i});
             end
 
+            %make an array of person
+            for i = 1:3
+                self.person{i} = Thing("person7",self.personStartLocation{i});
+            end
+
             %get the moves for each robot and whether the brick is picked up
-            [cup, cupMoving, cupTR] = getMoves(self);
+            [cup, cupMoving, person, personMoving, cupTR] = getMoves(self);
 
             %convert the transforms to joint positions for each move per robot
             qMatrix = self.transformMoves(self.robot, cupTR);
@@ -67,8 +79,8 @@ classdef Test < handle
             self.getSimulationGUI;
 
             %animate the movement for each robot
-            for i = 1:3
-                self.animateRobot(self.robot.model, self.qMatrix{i}, cup{i}, cupMoving{i});
+            for i = 1:5
+                self.animateRobot(self.robot.model, self.qMatrix{i}, cup{i}, cupMoving{i}, person{i}, personMoving{i});
                 %     pause
             end
         end
@@ -77,7 +89,7 @@ classdef Test < handle
             steps = 100; %%more steps ->slower code and movement
             joints=7;
             qCurrent = zeros(1,joints);
-            iterations = 3; %%number of moves. change for number of moves required
+            iterations = 5; %%number of moves. change for number of moves required
             qMatrix = cell(iterations, joints);
             disp(cupTR{1});
             for i = 1:iterations
@@ -96,7 +108,7 @@ classdef Test < handle
             end 
         end
 
-        function animateRobot(self,robot, qMatrix, cup, cupMoving  )
+        function animateRobot(self,robot, qMatrix, cup, cupMoving, person, personMoving)
             %ANIMATEROBOTS This function makes the robots move
             %   This function takes the robots in use, Trapezoidal Velocity Profile,
             %   cup in use and whether the cup is to also be moved. It then uses
@@ -119,6 +131,11 @@ classdef Test < handle
                         newPos1 = newPos1*transl(0,0,-0.1);
                         ee = newPos1(1:3,4);
                         cup.updatePosition(transl(ee));
+                    end
+                    %animate person
+                    if personMoving == true
+                        %self.personEndLocation{i}
+                        person.updatePosition(transl(-0.1, 0.15, 0.03));
                     end
 
                     while self.estop == 1
