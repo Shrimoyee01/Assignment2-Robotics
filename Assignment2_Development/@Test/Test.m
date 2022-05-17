@@ -111,13 +111,14 @@ classdef Test < handle
 
                     %animate robot motion
                     if size(qMatrix) > 1
-                        animate(robot, qMatrix(i, :));
+                        animate(robot, qMatrix(i, :)); 
                     end
                     %animate brick motion
                     if cupMoving == true
                         newPos1 = robot.fkine(qMatrix(i, :)); % THIS IS WHERE WE MASK THE CUP YAW SO IT IS ALWAYS UPRIGHT
-                        disp(newPos1)
-                        cup.updatePosition(newPos1*transl(0,0,-0.1)*rpy2r(0,0,0));
+                        newPos1 = newPos1*transl(0,0,-0.1);
+                        ee = newPos1(1:3,4);
+                        cup.updatePosition(transl(ee));
                     end
 
                     while self.estop == 1

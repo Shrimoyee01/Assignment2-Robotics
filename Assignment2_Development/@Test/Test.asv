@@ -4,8 +4,9 @@
 classdef Test < handle
     properties
         %GUI variables
-        estop;
-        startRobot;
+        estop; % estopbutton control
+        startRobot; %stops animation from starting till start is pressed
+        robotRunning; %stop animation from continuing after estop till continue is pressed
 
         %Setup Robots Variables
         robot;      %UR3
@@ -62,6 +63,7 @@ classdef Test < handle
 
             self.startRobot = 0;
             self.estop = 0;
+            self.robotRunning = 1;
             self.getSimulationGUI;
 
             %animate the movement for each robot
@@ -77,6 +79,7 @@ classdef Test < handle
             qCurrent = zeros(1,joints);
             iterations = 3; %%number of moves. change for number of moves required
             qMatrix = cell(iterations, joints);
+            disp(cupTR{1});
             for i = 1:iterations
                 if cupTR{i} == 0
                     qMatrix{i} = 0;
@@ -90,7 +93,7 @@ classdef Test < handle
                     end
                     qCurrent = qGoal;
                 end
-            end
+            end 
         end
 
         function animateRobot(self,robot, qMatrix, cup, cupMoving  )
@@ -104,22 +107,26 @@ classdef Test < handle
             end
             if self.startRobot == 1
                 steps = height(qMatrix);
-                disp(steps)
                 for i = 1:steps
 
                     %animate robot motion
                     if size(qMatrix) > 1
-                        animate(robot, qMatrix(i, :));
+                        animate(robot, qMatrix(i, :)); 
                     end
                     %animate brick motion
                     if cupMoving == true
                         newPos1 = robot.fkine(qMatrix(i, :)); % THIS IS WHERE WE MASK THE CUP YAW SO IT IS ALWAYS UPRIGHT
-                        cup.updatePosition(newPos1*transl(0,0,-0.1));
+                        newPos1 = newPos1*transl(0,0,-0.1);
+                        ee = newPos1(1:3,4);
+                        cup.updatePosition(transl(ee));
                     end
 
                     while self.estop == 1
                         % this pauses the code while the estop is pressed
                         pause(1);
+                        while self.robotRunning == 0
+                        pause(1);
+                        end
                     end 
 
                     drawnow()
