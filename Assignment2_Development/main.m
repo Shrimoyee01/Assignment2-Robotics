@@ -47,13 +47,14 @@ clf
 clear all
 clc
 
-%CafeEnvironment();
-robot = IRB120(1, 0.2, 1.0).model;
-qz = robot.getpos;
+CafeEnvironment();
+robot = IRB120(1, 0.2, 1.03).model;
+%qz = robot.getpos;
+qz = [0.4 0 0 0 0 0 0];
 robot.fkine(qz)
 
 %%
-robot = IRB120(0,0,0);
+robot = IRB120(1, 0.2, 1.03);
 robot.advancedTeach;
 
 location1 = transl(1,0,0);

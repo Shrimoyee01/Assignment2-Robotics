@@ -11,7 +11,7 @@ function [cup, cupMoving, person, personMoving, cupTR] = getMoves(self)
 ZeroPosition = [-0 0 1 0.77; 0 -1 0 0.20; 1 0 0 1.63; 0 0 0 1];
 
 %% move1 robot1->cup1 
-cup{1} = self.cups{1}; %drop to cup
+cup{1} = self.cups{1}; %pick up cup
 cupMoving{1} = false;
 person{1} = self.person{1};
 personMoving{1} = false;
@@ -29,7 +29,7 @@ cup{3} = self.cups{1}; %drop off cup
 cupMoving{3} = false;
 person{3} = self.person{1};
 personMoving{3} = true;
-cupTR{3} = ZeroPosition;
+cupTR{3} = self.cupEndLocations{1};
 
 %% move4 robot1->Zero Position 
 cup{4} = self.cups{1}; %drop off cup
@@ -74,6 +74,7 @@ cupMoving{9} = false;
 person{9} = self.person{3};
 personMoving{9} = false;
 cupTR{9} = transl(cup{9}.position)*transl(0,0,0.12);
+
 
 %% move2 robot1&cup1->person 
 cup{10} = self.cups{3}; %drop off cup
