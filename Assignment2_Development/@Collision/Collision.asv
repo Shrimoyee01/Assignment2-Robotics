@@ -14,7 +14,7 @@ function CheckCollision(robot, rectangleCenter, halfWidth)
 clc
 clear
 clf
-locationPerson = transl(0.2,0.35,0);
+locationPerson = transl(-2,0.35,0);
 
 person = Thing("person5", locationPerson);
 % person("scale", 0.2);
@@ -23,7 +23,15 @@ PlaceObject('barrier.ply',[-1,0.35,1]);
 hold on;
 robot = IRB120(0,0,0);
 hold on;
+
+% move person
+% for q = -2:2:0.5
+%     
+%     drawnow();
 pause(0.1)
+
+% plot point clound
+points = [X(:), 
 % tr = IRB120.fkine(IRB120.getpos);
 %     endEffectorToCenterDist =
 end

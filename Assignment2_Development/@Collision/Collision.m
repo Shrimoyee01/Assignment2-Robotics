@@ -24,11 +24,20 @@ hold on;
 robot = IRB120(0,0,0);
 hold on;
 
+% create a box
+
 % move person
-for q = -2:2:0.5
-    person.plot(q);
-    drawnow();
+% for q = -2:2:0.5
+%     
+%     drawnow();
 pause(0.1)
+
+% plot point clound
+tri = delaunay(X, Y, Z);
+personTri_h = trimes(tri,X,Y,Z);
+drawnow();
+view(3)
+axis equal)
 % tr = IRB120.fkine(IRB120.getpos);
 %     endEffectorToCenterDist =
 end
