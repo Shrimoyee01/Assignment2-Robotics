@@ -1,7 +1,6 @@
 
 
-function [brickLocations, brickWallLocations, robot1Base, ...
-    ] = getStartingPositions(~)
+function [brickLocations, brickWallLocations, robot1Base] = getStartingPositions(~)
 %GETSTARTINGPOSITIONS This function sets all the starting locations for the robot
 %animation
 %   brickTransformList set's the locations for each of the bricks

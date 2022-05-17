@@ -15,7 +15,7 @@ function [cupStartLocations, cupEndLocations, personStartLocation,...
     
     %Cup end locations
     cupEndLocations{1}= transl( 0.5 ,0, 1.4);
-    cupEndLocations{2}= transl( 0.5 ,0, 1.4);
+    cupEndLocations{2}= transl( 0.5 ,0, 1.5);
     cupEndLocations{3}= transl( 0.5 ,0, 1.5);
 
     %person end locations

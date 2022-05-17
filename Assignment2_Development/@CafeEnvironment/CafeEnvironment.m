@@ -29,9 +29,9 @@ classdef CafeEnvironment < handle
             PlaceObject('estop8.ply',[2,-3,1]);
             PlaceObject('estop8.ply',[-0.5,-3,1]);
             PlaceObject('estop8.ply',[0.95,1.7,0.85]);
-%             PlaceObject('cup5.ply',[-2.2,1.7,1.22]);
-%             PlaceObject('cup5.ply',[-1.9,1.9,1.22]);
-%             PlaceObject('cup5.ply',[-1.8,2.6,1.22]);
+            PlaceObject('cup5.ply',[-2.2,1.7,1.22]);
+            PlaceObject('cup5.ply',[-1.9,1.9,1.22]);
+            PlaceObject('cup5.ply',[-1.8,2.6,1.22]);
             PlaceObject('fireExtinguisher.ply',[2.6,-2.8,0.03]);
 
             % Setup Camera
