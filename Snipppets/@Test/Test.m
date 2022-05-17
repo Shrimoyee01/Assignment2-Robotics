@@ -45,6 +45,8 @@ function self = Test()
     %initiate the robots
     self.robot = IRB120(1, 0.2, 1.0);
 
+    self.robot.advancedTeach;
+    
     %make an array of cup
     for j = 1:3
         self.cups{j} = Thing("cup5",self.cupStartLocations{j});
