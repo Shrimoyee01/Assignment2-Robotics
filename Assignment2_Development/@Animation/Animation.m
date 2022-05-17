@@ -5,13 +5,13 @@ classdef Animation < handle
     properties
         %GUI variables
         estop; % estopbutton control
-        startRobot; %stops animation from starting till start is pressed
-        robotRunning; %stop animation from continuing after estop till continue is pressed
-        orderReady;
+        startRobot; % stops animation from starting till start is pressed
+        robotRunning; % stop animation from continuing after estop till continue is pressed
+        orderReady; % stores which order is ready. If 0 no order is ready. Values can be 0-3
 
         %Setup Robots Variables
-        robot;      %UR3
-        robotBase;  %UR3 Base Location
+        robot;      %IRB120
+        robotBase;  %IRB120 Base Location
 
 
         %Setup Cup Variables
@@ -76,15 +76,13 @@ classdef Animation < handle
 
 
             %--------GUI properties
-            self.estop = 0;
+            self.estop = 0; 
             self.robotRunning = 1;
             self.startRobot = 0;
             self.orderReady = 0;
 
-
-            self.getSimulationGUI;
+            self.getSimulationGUI; % starts the GUI for robot control
             %------------------------
-
 
 
             %-----------Loop for cups
@@ -129,7 +127,7 @@ classdef Animation < handle
 
         end
 
-        
+
         function qMatrix = transformMoves(~,robot, cupTR)
             steps = 50; %%more steps ->slower code and movement
             joints=7;
@@ -192,14 +190,14 @@ classdef Animation < handle
 
                         %For order 1
                         if OrderNo == 1
-                            if i > 25
+                            if i > 25 %person moving back with the cup
                                 matrix = [-0.9/25;0;0];
                                 cupPos = cupPos+matrix;
                                 tester = transl(cupPos);
                                 cup.updatePosition(tester);
                             end
 
-                            if i <= 25
+                            if i <= 25 % person moving towards the cup
                                 matrix = [0.9/25;0;0];
                             end
                             currentPos = currentPos+matrix;
@@ -260,17 +258,12 @@ classdef Animation < handle
                                 cup.updatePosition(tester);
                             end
 
-                            
-
                             currentPos = currentPos+matrix;
                             personPos = transl(currentPos);
                             person.updatePosition(personPos);
                         end
 
-
                     end
-
-
 
                     while self.estop == 1
                         % this pauses the code while the estop is pressed
