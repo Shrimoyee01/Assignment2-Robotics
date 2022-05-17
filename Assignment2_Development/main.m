@@ -8,8 +8,6 @@ clf
 clear all
 clc
 
-
-
 CafeEnvironment();
 
 nextEE = [1,-1.05,1.03+0.28];
@@ -32,9 +30,38 @@ clf
 clear all
 clc
 
-robot = IRB120(1,-0.6,1.05).model;
+robot = IRB120(0,0,0);
+robot.advancedTeach;
 
-robot.advancedTeach
+location1 = transl(1,0,0);
+
+cup1 = Thing("cup4",location1);
+
+disp("press enter to continue");
+pause;
+
+cup1.updatePosition(transl(0,1,0.5));
+
+%%
+clf
+clear all
+clc
+
+%CafeEnvironment();
+IRB120(1,-0.6,1.05).model;
+
+%%
+robot = IRB120(0,0,0);
+robot.advancedTeach;
+
+location1 = transl(1,0,0);
+
+cup1 = Thing("cup4",location1);
+
+disp("press enter to continue");
+pause;
+
+cup1.updatePosition(transl(0,1,0.5));
 
 %%
 clf
@@ -43,8 +70,17 @@ clc
 
 %CafeEnvironment();
 
+nextEE = [1, -1.05, 1.03+0.28];
 
-IRB120(1,-0.6,1.05).model;
+Ani = Animate(nextEE);
+Ani.MoveRobotAndCupTo();
 
+%%
+clf
+clear all
+clc
+robot = IRB120(0,0,0).model;
+IRBEE = [0.77 0.2 1.63];
 
+robot.ikines(IRBEE)
 
