@@ -100,7 +100,7 @@ classdef CafeEnvironment < handle
 %             PlaceObject('cup5.ply',[CoffeeCup2Loc(1),CoffeeCup2Loc(2),CoffeeCup2Loc(3)]);
 %             PlaceObject('cup5.ply',[CoffeeCup3Loc(1),CoffeeCup3Loc(2),CoffeeCup3Loc(3)]);
 
-            PlaceObject('person1.ply',[Person1Loc(1),Person1Loc(2),Person1Loc(3)]);
+            PlaceObject('person5.ply',[Person1Loc(1),Person1Loc(2),Person1Loc(3)]);
 %             PlaceObject('person2.ply',[Person2Loc(1),Person2Loc(2),Person2Loc(3)]);
 %             PlaceObject('person3.ply',[Person3Loc(1),Person3Loc(2),Person3Loc(3)]);
            
