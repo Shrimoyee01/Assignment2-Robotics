@@ -21,8 +21,8 @@ function [cupStartLocations, cupEndLocations, personStartLocation,...
     robotBase = [1, 0.2, 1.0];
 
     cupEndLocations{1}= transl( 0.5 ,0, 1.4);
-    cupEndLocations{2}= transl( 0.5 ,0, 1.5);
-    cupEndLocations{3}= transl( 0.5 ,0, 1.5);
+    cupEndLocations{2}= transl( 0.5 ,0, 1.4);
+    cupEndLocations{3}= transl( 0.5 ,0, 1.4);
 
     personStartLocation{1} = transl(-1, 0.15, 0.03);
     personStartLocation{2} = transl(-1, -1, 0.03);
