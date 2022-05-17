@@ -69,14 +69,7 @@ classdef CafeEnvironment < handle
             hold on;
             disp('setting up room...');
             
-            % Define Object locations
-%             CoffeeCup1Loc = [1.2,-1.05,1.03];
-%             CoffeeCup2Loc = [1,-1.05,1.03];
-%             CoffeeCup3Loc = [0.8,-1.05,1.03];
 
-            Person1Loc = [-1,0.15,0.03];
-            Person2Loc = [-0.5,-1,0.03];
-            Person3Loc = [-0.5,-1,0.03];
 
             CounterLoc = [0.5,-2.9,0.03];
 
@@ -94,15 +87,14 @@ classdef CafeEnvironment < handle
             PlaceObject('table.ply',[-2,2.2,0]);
             PlaceObject('lights.ply',[0.6,1.5,1.03]);
             PlaceObject('lights.ply',[0.6,-1.2,1.03]);
+            PlaceObject('estop8.ply',[2,-3,1]);
+            PlaceObject('estop8.ply',[-0.5,-3,1]);
+            PlaceObject('estop8.ply',[0.95,1.7,0.85]);
+            PlaceObject('cup5.ply',[-2.2,1.7,1.22]);
+            PlaceObject('cup5.ply',[-1.9,1.9,1.22]);
+            PlaceObject('cup5.ply',[-1.8,2.6,1.22]);
+            PlaceObject('fireExtinguisher.ply',[2.6,-2.8,0.03]);
 
-%             % Setup & Place Dynamic Objects 
-%             PlaceObject('cup5.ply',[CoffeeCup1Loc(1),CoffeeCup1Loc(2),CoffeeCup1Loc(3)]);
-%             PlaceObject('cup5.ply',[CoffeeCup2Loc(1),CoffeeCup2Loc(2),CoffeeCup2Loc(3)]);
-%             PlaceObject('cup5.ply',[CoffeeCup3Loc(1),CoffeeCup3Loc(2),CoffeeCup3Loc(3)]);
-
-%             PlaceObject('person7.ply',[Person1Loc(1),Person1Loc(2),Person1Loc(3)]);
-%             PlaceObject('person2.ply',[Person2Loc(1),Person2Loc(2),Person2Loc(3)]);
-%             PlaceObject('person3.ply',[Person3Loc(1),Person3Loc(2),Person3Loc(3)]);
            
 
 

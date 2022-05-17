@@ -48,8 +48,11 @@ classdef Test < handle
             self.personEndLocation = personEndLocation;
 
 
-            %initiate the robots
-            self.robot = IRB120(1, 0.2, 1.03);
+            %initiate the robot
+            robot = IRB120(1, 0.2, 1.03);
+            self.robot = robot;
+            robot.advancedTeach;
+
 
             %make an array of cup
             for i = 1:3
