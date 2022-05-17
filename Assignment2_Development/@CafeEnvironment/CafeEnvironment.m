@@ -83,8 +83,8 @@ classdef CafeEnvironment < handle
 
             % Setup & Place Walls and Floor
             surf([-3,-3;3,3],[-3,3;-3,3],[10e-3,10e-3;10e-3,10e-3],'CData',imread('LightWoodenFloor.jpg'),'FaceColor','texturemap'); %Loads a wooden floor
-            surf([-3,-3;-3,-3],[-3,3;-3,3],[0,0;2.5,2.5],'CData',imread('brickWalls.jpg'),'FaceColor','texturemap'); %Loads a brick wall
-            surf([-3,3;-3,3],[-3,-3;-3,-3],[0,0;2.5,2.5],'CData',imread('Enterance.png'),'FaceColor','texturemap'); %Loads the cafe enterance
+            surf([-3,-3;-3,-3],[-3,3;-3,3],[0,0;2.5,2.5],'CData',imread('Enterance.png'),'FaceColor','texturemap'); %Loads a brick wall
+            surf([-3,3;-3,3],[-3,-3;-3,-3],[0,0;2.5,2.5],'CData',imread('brickWalls.jpg'),'FaceColor','texturemap'); %Loads the cafe enterance
 
             % Setup & Place Static Objects 
             PlaceObject('counter.ply',[CounterLoc(1),CounterLoc(2),CounterLoc(3)]);
