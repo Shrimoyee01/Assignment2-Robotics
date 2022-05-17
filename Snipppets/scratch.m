@@ -2,7 +2,7 @@
 clc
 clf
 
-Test;
+Animation;
 % camlight
 
 % robot = IRB120test();

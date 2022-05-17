@@ -1,7 +1,7 @@
 %%This class controls the location and movement of the robots and bricks
 %%within the animated wall building
 
-classdef Test < handle
+classdef Animation < handle
     properties
         %GUI variables
         estop; % estopbutton control
@@ -31,7 +31,7 @@ classdef Test < handle
     end
 
     methods
-        function self = Test()
+        function self = Animation()
 
             disp('setting up robot...');
             %% Animation setup
@@ -125,8 +125,11 @@ classdef Test < handle
                         self.robotRunning = 0;
                 end
             end
+            %------------------------------------------------
+
         end
 
+        
         function qMatrix = transformMoves(~,robot, cupTR)
             steps = 50; %%more steps ->slower code and movement
             joints=7;
@@ -148,6 +151,7 @@ classdef Test < handle
                 end
             end
         end
+
 
         function animateRobot(self,robot, qMatrix, cup, cupMoving, person, personMoving, OrderNo)
             %ANIMATEROBOTS This function makes the robots move
