@@ -37,6 +37,7 @@ classdef Test < handle
             self.cupStartLocations = cupStartLocations;
             self.cupEndLocations = cupEndLocations;
 
+
             %initiate the robots
             self.robot = IRB120(1, 0.2, 1.0);
 
@@ -76,6 +77,7 @@ classdef Test < handle
             qCurrent = zeros(1,joints);
             iterations = 3; %%number of moves. change for number of moves required
             qMatrix = cell(iterations, joints);
+            disp(cupTR{1});
             for i = 1:iterations
                 if cupTR{i} == 0
                     qMatrix{i} = 0;
@@ -89,7 +91,7 @@ classdef Test < handle
                     end
                     qCurrent = qGoal;
                 end
-            end
+            end 
         end
 
         function animateRobot(self,robot, qMatrix, cup, cupMoving  )
@@ -103,7 +105,6 @@ classdef Test < handle
             end
             if self.startRobot == 1
                 steps = height(qMatrix);
-                disp(steps)
                 for i = 1:steps
 
                     %animate robot motion
@@ -112,8 +113,8 @@ classdef Test < handle
                     end
                     %animate brick motion
                     if cupMoving == true
-                        newPos1 = robot.fkine(qMatrix(i, :));
-                        cup.updatePosition(newPos1);
+                        newPos1 = robot.fkine(qMatrix(i, :)); % THIS IS WHERE WE MASK THE CUP YAW SO IT IS ALWAYS UPRIGHT
+                        cup.updatePosition(newPos1*transl(0,0,-0.1)*trotz(pi));
                     end
 
                     while self.estop == 1
