@@ -25,12 +25,10 @@ function [cupStartLocations, cupEndLocations, personStartLocation,...
     cupEndLocations{3}= transl( 0.5 ,0, 1.5);
 
     personStartLocation{1} = transl(-1, 0.15, 0.03);
-    personStartLocation{2} = transl(-1, -1, 0.03);
-    personStartLocation{3} = transl(-1, -2, 0.03);
+    personStartLocation{2} = transl(-1, 0.15, 0.03);
+    personStartLocation{1} = transl(-1, 0.15, 0.03);
 
-    personEndLocation{1} = transl(-0.1, 0.15, 0.03);
-    personEndLocation{1} = transl(-0.1, 0.15, 0.03);
-    personEndLocation{1} = transl(-0.1, 0.15, 0.03);
+    personEndLocation
 
 
 end

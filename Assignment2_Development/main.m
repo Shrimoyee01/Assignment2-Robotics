@@ -48,7 +48,9 @@ clear all
 clc
 
 %CafeEnvironment();
-IRB120(1,-0.6,1.05).model;
+robot = IRB120(1, 0.2, 1.0).model;
+qz = robot.getpos;
+robot.fkine(qz)
 
 %%
 robot = IRB120(0,0,0);

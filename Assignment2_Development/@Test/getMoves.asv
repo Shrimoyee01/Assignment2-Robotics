@@ -34,14 +34,14 @@ cupTR{3} = self.cupEndLocations{1};
 %% move4 Person-> Robot
 cup{4} = self.cups{1}; %drop off cup
 cupMoving{4} = true;
-person{4} = self.person{1};
+person{1} = self.person{1};
 personMoving{4} = true;
 cupTR{4} = ZeroPosition;
 
 %% move5 robot1->Zero Position 
 cup{5} = self.cups{1}; %drop off cup
 cupMoving{5} = false;
-person{5} = self.person{1};
+person{1} = self.person{1};
 personMoving{5} = false;
 cupTR{5} = ZeroPosition;
 
