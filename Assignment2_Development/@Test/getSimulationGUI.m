@@ -22,7 +22,7 @@ function getSimulationGUI(self)
 	
 	bgcol = [099 099 099]/255;
 	handles.fig = get(ax, 'Parent');
-	set(ax, 'Outerposition', [0.25 0 0.7 1]);
+	set(ax, 'Outerposition', [0.3 0 0.8 1]);
 	handles.curax = ax;
 	
 	%GUI panel
@@ -30,7 +30,7 @@ function getSimulationGUI(self)
 		'Title', 'Robot Control', ...
 		'BackgroundColor', bgcol, ...
         'ForegroundColor', 'white', ...
-		'Position', [0.25 0, 0.15, 0.25]);
+		'Position', [0.25 0, 0.15, 0.3]);
 	set(panel, 'Units', 'pixels');
 	handles.panel = panel;
 	set(handles.fig, 'Units', 'pixels');
@@ -48,10 +48,22 @@ function getSimulationGUI(self)
         'ForegroundColor', 'red', ...
         'String', 'X');
 	
-	%Start button
-	handles.start = uicontrol(panel, 'Style', 'pushbutton', ...
+    	%coffee1 button
+	handles.order1 = uicontrol(panel, 'Style', 'pushbutton', ...
 		'Units', 'normalized', ...
-		'String', 'Start', ...
+		'String', 'Order 1', ...
+		'Position', [0.12 0.85 0.6 0.15]);
+
+    	%coffee2 button
+	handles.order2 = uicontrol(panel, 'Style', 'pushbutton', ...
+		'Units', 'normalized', ...
+		'String', 'Order 2', ...
+		'Position', [0.12 0.65 0.6 0.15]);
+
+	%coffee3 button
+	handles.order3 = uicontrol(panel, 'Style', 'pushbutton', ...
+		'Units', 'normalized', ...
+		'String', 'Order 3', ...
 		'Position', [0.12 0.45 0.6 0.15]);
 
     %continue button
@@ -67,31 +79,26 @@ function getSimulationGUI(self)
         'ForegroundColor', 'red', ...
 		'FontSize', 8, ...
 		'Position', [0.12 0.05 0.6 0.15]);
-%     		'BackgroundColor', 'red', ...
-%         'ForegroundColor', 'red', ...
 
-
-%     % Choose default command line output
-%     handles.output = hObject;
-%     
-%     % Update handles structure
-%     guidata(hObject, handles);
-
-
-%     %Un press Emergency stop button
-% 	handles.unemergencyStop = uicontrol(panel, 'Style', 'pushbutton', ...
-% 		'Units', 'normalized', ...
-% 		'String', '<html>UnpressESTOP<html>', ...
-% 		'BackgroundColor', 'red', ...
-% 		'FontSize', 6, ...
-% 		'Position', [0.47 0.05 0.3 0.3]);
 		
 	%% Callbacks
 	%darkness slider callback
-	set(handles.start, ...
+	set(handles.order1, ...
 		'Interruptible', 'on', ...
-		'Callback', @(src, event)start_callback(src, self, handles));
+		'Callback', @(src, event)order1_callback(src, self, handles));
+
+	set(handles.order2, ...
+		'Interruptible', 'on', ...
+		'Callback', @(src, event)order2_callback(src, self, handles));
 	
+    set(handles.order3, ...
+		'Interruptible', 'on', ...
+		'Callback', @(src, event)order3_callback(src, self, handles));
+
+% 	set(handles.start, ...
+% 		'Interruptible', 'on', ...
+% 		'Callback', @(src, event)start_callback(src, self, handles));
+% 	
 	set(handles.emergencyStop, ...
 		'Interruptible', 'off', ...
 		'Callback', @(src, event)emergencyStop_callback(src, self, handles));
@@ -99,21 +106,26 @@ function getSimulationGUI(self)
 	set(handles.continue, ...
 		'Interruptible', 'off', ...
 		'Callback', @(src, event)continue_callback(src, self, handles));
-
-%     set(handles.unemergencyStop, ...
-% 		'Interruptible', 'off', ...
-% 		'Callback', @(src, event)unemergencyStop_callback(src, self, handles));
-% 	
+	
 end
 
 %% Callback Functions
-function start_callback(src, self, handles)
-	self.startRobot = 1;
-% 	self.runAnimation();
+function order1_callback(src, self, handles)
+	self.orderReady = 1;
+    self.startRobot = 1;
+end
+
+function order2_callback(src, self, handles)
+	self.orderReady = 2;
+    self.startRobot = 1;
+end
+
+function order3_callback(src, self, handles)
+	self.orderReady = 3;
+    self.startRobot = 1;
 end
 
 function emergencyStop_callback(src, self, handles)
-
 
 button_state = get(handles.emergencyStop,'Value');
 
@@ -126,20 +138,13 @@ else
    set(handles.emergencyStop,'String','E-STOP','ForegroundColor','red', 'BackgroundColor', 'white')
    self.estop = 0;
 end
-
-
 end
 
 function continue_callback(src, self, handles)
+    if self.estop == 0
 	self.robotRunning = 1;
+    end
 end
-
-% function unemergencyStop_callback(src, self, handles)
-% 	self.estop = 0;
-% % 	self.stopState = 1;
-% end
-
-
 
 %callback to quit gui
 function quit_callback(robot, handles)
