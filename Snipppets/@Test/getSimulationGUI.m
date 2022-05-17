@@ -20,7 +20,7 @@ function getSimulationGUI(self)
 	ax = gca;
 	end
 	
-	bgcol = [0 0 0]/255;
+	bgcol = [099 099 099]/255;
 	handles.fig = get(ax, 'Parent');
 	set(ax, 'Outerposition', [0.25 0 0.7 1]);
 	handles.curax = ax;
@@ -29,6 +29,7 @@ function getSimulationGUI(self)
 	panel = uipanel(handles.fig, ...
 		'Title', 'Robot Control', ...
 		'BackgroundColor', bgcol, ...
+        'ForegroundColor', 'white', ...
 		'Position', [0.25 0, 0.15, 0.25]);
 	set(panel, 'Units', 'pixels');
 	handles.panel = panel;
@@ -51,23 +52,31 @@ function getSimulationGUI(self)
 	handles.start = uicontrol(panel, 'Style', 'pushbutton', ...
 		'Units', 'normalized', ...
 		'String', 'Start', ...
-		'Position', [0.12 0.4 0.3 0.3]);
+		'Position', [0.12 0.45 0.6 0.15]);
+
+    %continue button
+	handles.continue = uicontrol(panel, 'Style', 'pushbutton', ...
+		'Units', 'normalized', ...
+		'String', 'Continue', ...
+		'Position', [0.12, 0.25, 0.6, 0.15]);
 	
 	%Emergency stop button
 	handles.emergencyStop = uicontrol(panel, 'Style', 'togglebutton', ...
 		'Units', 'normalized', ...
 		'String', 'E-STOP', ...
+        'ForegroundColor', 'red', ...
 		'FontSize', 8, ...
 		'Position', [0.12 0.05 0.6 0.15]);
 %     		'BackgroundColor', 'red', ...
 %         'ForegroundColor', 'red', ...
-	
-	%continue button
-	handles.continue = uicontrol(panel, 'Style', 'pushbutton', ...
-		'Units', 'normalized', ...
-		'String', 'Continue', ...
-        'FontSize', 6, ...
-		'Position', [0.47, 0.4, 0.3, 0.3]);
+
+
+%     % Choose default command line output
+%     handles.output = hObject;
+%     
+%     % Update handles structure
+%     guidata(hObject, handles);
+
 
 %     %Un press Emergency stop button
 % 	handles.unemergencyStop = uicontrol(panel, 'Style', 'pushbutton', ...
@@ -104,19 +113,33 @@ function start_callback(src, self, handles)
 end
 
 function emergencyStop_callback(src, self, handles)
+
+
+button_state = get(handles.emergencyStop,'Value');
+
+if(button_state == 1)
+    set(handles.emergencyStop,'string','Release','foregroundcolor','blue','BackgroundColor', '#B2BEB5')
 	self.estop = 1;
-% 	self.stopState = 1;
+    self.robotRunning = 0;
+else
+%     set(handles.emergencyStop,'string','release','foregroundcolor','blue','BackgroundColor', 'grey')
+   set(handles.emergencyStop,'String','E-STOP','ForegroundColor','red', 'BackgroundColor', 'white')
+   self.estop = 0;
+end
+
+
 end
 
 function continue_callback(src, self, handles)
-	self.estop = 0;
-	self.startRobot = 1;
+	self.robotRunning = 1;
 end
 
 % function unemergencyStop_callback(src, self, handles)
 % 	self.estop = 0;
 % % 	self.stopState = 1;
 % end
+
+
 
 %callback to quit gui
 function quit_callback(robot, handles)

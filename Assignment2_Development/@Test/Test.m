@@ -4,8 +4,9 @@
 classdef Test < handle
     properties
         %GUI variables
-        estop;
-        startRobot;
+        estop; % estopbutton control
+        startRobot; %stops animation from starting till start is pressed
+        robotRunning; %stop animation from continuing after estop till continue is pressed
 
         %Setup Robots Variables
         robot;      %UR3
@@ -61,6 +62,7 @@ classdef Test < handle
 
             self.startRobot = 0;
             self.estop = 0;
+            self.robotRunning = 1;
             self.getSimulationGUI;
 
             %animate the movement for each robot
@@ -119,6 +121,9 @@ classdef Test < handle
                     while self.estop == 1
                         % this pauses the code while the estop is pressed
                         pause(1);
+                        while self.robotRunning == 0
+                        pause(1);
+                        end
                     end 
 
                     drawnow()

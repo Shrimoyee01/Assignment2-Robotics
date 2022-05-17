@@ -7,6 +7,7 @@ properties
 estop;
 startRobot;
 
+
 %Setup Robots Variables
 robot;      %UR3
 robotBase;  %UR3 Base Location
@@ -61,6 +62,7 @@ function self = Test()
 
     self.startRobot = 0;
     self.estop = 0;
+    self.robotRunning = 1;
     self.getSimulationGUI;
 
     %animate the movement for each robot
@@ -118,6 +120,9 @@ function animateRobot(self,robot, qMatrix, cup, cupMoving  )
         while self.estop == 1
         % this pauses the code while the estop is pressed
         pause(1);
+        while self.robotRunning == 0
+        pause(1);
+        end
         end
         
         drawnow()
