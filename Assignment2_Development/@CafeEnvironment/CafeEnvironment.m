@@ -9,7 +9,7 @@ classdef CafeEnvironment < handle
     methods
         function self = CafeEnvironment()
             hold on;
-            disp('opening cafe...');
+            disp('Opening Cafe...');
             
             CounterLoc = [0.5,-2.9,0.03];
 
