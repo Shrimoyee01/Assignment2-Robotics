@@ -195,7 +195,7 @@ classdef Animation < handle
                             if i > 25 %person moving back with the cup
                                 matrix = [-0.9/25;0;0];
                                 cupPos = cupPos+matrix;
-                                tester = transl(cupPos);%*transl(0,0,-0.25); %added a transl down so the cup is in hand
+                                tester = transl(cupPos)*transl(0,0,-0.25); %added a transl down so the cup is in hand
                                 cup.updatePosition(tester);
                             end
 
@@ -220,14 +220,14 @@ classdef Animation < handle
                             if i <= 45 && i > 30
                                 matrix = [0;-1.15/15;0];
                                 cupPos = cupPos+matrix;
-                                tester = transl(cupPos);%*transl(0,0,-0.25); %added a transl down so the cup is in hand
+                                tester = transl(cupPos)*transl(0,0,-0.25); %added a transl down so the cup is in hand
                                 cup.updatePosition(tester);
                             end
 
                             if i <=50 && i > 45
                                 matrix = [-0.9/5;0;0];
                                 cupPos = cupPos+matrix;
-                                tester = transl(cupPos);%*transl(0,0,-0.25); %added a transl down so the cup is in hand
+                                tester = transl(cupPos)*transl(0,0,-0.25); %added a transl down so the cup is in hand
                                 cup.updatePosition(tester);
                             end
 
@@ -249,14 +249,14 @@ classdef Animation < handle
                             if i <= 45 && i > 30
                                 matrix = [0;-2.15/15;0];
                                 cupPos = cupPos+matrix;
-                                tester = transl(cupPos);%*transl(0,0,-0.25); %added a transl down so the cup is in hand
+                                tester = transl(cupPos)*transl(0,0,-0.25); %added a transl down so the cup is in hand
                                 cup.updatePosition(tester);
                             end
 
                             if i <= 50 && i > 45
                                 matrix = [-0.9/5;0;0];
                                 cupPos = cupPos+matrix;
-                                tester = transl(cupPos);%*transl(0,0,-0.25); %added a transl down so the cup is in hand
+                                tester = transl(cupPos)*transl(0,0,-0.25); %added a transl down so the cup is in hand
                                 cup.updatePosition(tester);
                             end
 
