@@ -145,7 +145,7 @@ classdef Animation < handle
                     qMatrix{i} = 0;
                 else
                     qGoal = robot.model.ikcon(cupTR{i}, qCurrent); % include joint limits with ikone
-                    s = lspb(0, 1, steps);
+                    s = lspb(0, 1, steps); %polynomial distance from 0 to 1
                     qMatrix{i} = zeros(steps, joints);
 
                     for j = 1:steps
