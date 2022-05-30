@@ -52,13 +52,12 @@ classdef IRB120 < handle
             name = ['IRB120_',datestr(now,'yyyymmddTHHMMSSFFF')];
 
 
-            % theta=q, d=0, a=0, alpha=0, offset=0
+            % theta=q, d=0, a=0, alpha=0, joint type
             % theta: rotation about Z
             % d translation alonog the Z axis
             % a translation along the x axis
             % alpha: rotatio about the x axis
             % prismatic or rotational
-            % offset:
             L(1) = Link([pi     0          0         pi/2   1]); % PRISMATIC Link
             L(2) = Link([0      0.29       0         -pi/2  0]);
             L(3) = Link([-pi/2  0          0.27      0      0]);
@@ -76,6 +75,7 @@ classdef IRB120 < handle
             L(6).qlim = [-120 120]*pi/180;
             L(7).qlim = [-400 400]*pi/180;
 
+            % offset: kinematic joint coordinate offsets (Nx1)
             L(2).offset =  -pi;
             L(3).offset =  -pi/2;
             L(5).offset =  pi;
