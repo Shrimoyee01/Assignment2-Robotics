@@ -40,16 +40,16 @@ classdef Animation < handle
                 personEndLocation, robotBase] = self.getStartingPositions();
 
             %store the variables in the object
-            self.robotBase = robotBase;
-            self.cupStartLocations = cupStartLocations;
-            self.cupEndLocations = cupEndLocations;
+            self.robotBase = robotBase; % not used
+            self.cupStartLocations = cupStartLocations; %cup starting locations
+            self.cupEndLocations = cupEndLocations; 
             self.personStartLocation = personStartLocation;
             self.personEndLocation = personEndLocation;
 
             %initiate the robot
-            robot = IRB120(1, 0.2, 1.03);
-            self.robot = robot;
-            robot.advancedTeach;
+            robot = IRB120(1, 0.2, 1.03); % initalise the robot location
+            self.robot = robot; %store robot in the class
+            robot.advancedTeach; %opens advanced teach
 
             %make an array of cup
             for i = 1:3
@@ -129,6 +129,12 @@ classdef Animation < handle
             %   This function takes the robot in use and calculates the 
             %   Trapezoidal Velocity Profile qMatrix
 
+            % We ran out of time to replace this with RMRC or quintic
+            % polynomial
+            % Trap completes the movement quickly however it has jerk and
+            % so is not appropriate for the use case. An alternative would
+            % be quintic or s-curve trajectory planning
+
             steps = 50; %%more steps ->slower code and movement
             joints=7;
             qCurrent = zeros(1,joints);
@@ -138,7 +144,7 @@ classdef Animation < handle
                 if cupTR{i} == 0
                     qMatrix{i} = 0;
                 else
-                    qGoal = robot.model.ikcon(cupTR{i}, qCurrent);
+                    qGoal = robot.model.ikcon(cupTR{i}, qCurrent); % include joint limits with ikone
                     s = lspb(0, 1, steps);
                     qMatrix{i} = zeros(steps, joints);
 
@@ -159,6 +165,8 @@ classdef Animation < handle
             %   when an order is ready it also moves the correct person
             %   forward to collect the cup
 
+            % hard coded in get moves
+
             while self.startRobot == 0
                 pause(1);
             end
@@ -173,34 +181,34 @@ classdef Animation < handle
 
                     %animate cup motion
                     if cupMoving == true
-                        newPos1 = robot.fkine(qMatrix(i, :)); % THIS IS WHERE WE MASK THE CUP YAW SO IT IS ALWAYS UPRIGHT
-                        newPos1 = newPos1*transl(0,0,-0.1);
-                        ee = newPos1(1:3,4);
+                        newPos1 = robot.fkine(qMatrix(i, :)); %find the robot ee position
+                        newPos1 = newPos1*transl(0,0,-0.1); %drop the cup location slightly just cause it didnt work on my computer?
+                        ee = newPos1(1:3,4); % THIS IS WHERE WE MASK THE CUP YAW SO IT IS ALWAYS UPRIGHT
                         cup.updatePosition(transl(ee));
                     end
 
-                    %animate person motion
+                    %% animate person motion
                     if personMoving == true
                         %self.personEndLocation{i}
                         if i == 1
                             currentPos = self.personStartLocation{OrderNo};
                             currentPos = currentPos(1:3,4);
-                            cupPos = transl( 0.5 ,0, 1.4);
+                            cupPos = transl( 0.5 ,0, 1.4); %%hard coded hand off position
                             cupPos = cupPos(1:3,4);
 
                         end
 
                         %For order 1
                         if OrderNo == 1
-                            if i > 25 %person moving back with the cup
-                                matrix = [-0.9/25;0;0];
-                                cupPos = cupPos+matrix;
-                                tester = transl(cupPos);%*transl(0,0,-0.25); %added a transl down so the cup is in hand
-                                cup.updatePosition(tester);
+                            if i <= 25 % person moving towards the cup
+                                matrix = [0.9/25;0;0]; %step the person is moving
                             end
 
-                            if i <= 25 % person moving towards the cup
-                                matrix = [0.9/25;0;0];
+                            if i > 25 %person moving back with the cup
+                                matrix = [-0.9/25;0;0]; %step the person is moving
+                                cupPos = cupPos+matrix; 
+                                tester = transl(cupPos);%*transl(0,0,-0.25); %added a transl down so the cup is in hand
+                                cup.updatePosition(tester); %moved the cup position by the same step as the person
                             end
                             currentPos = currentPos+matrix;
                             personPos = transl(currentPos);
@@ -209,22 +217,22 @@ classdef Animation < handle
 
                         %For order 2
                         if OrderNo == 2
-                            if i <= 15
+                            if i <= 15 %person moves forward
                                 matrix = [0.9/15;0;0];
                             end
 
-                            if i <= 30 && i > 15
+                            if i <= 30 && i > 15 %person moves to the side towards robot
                                 matrix = [0;1.15/15;0];
                             end
 
-                            if i <= 45 && i > 30
+                            if i <= 45 && i > 30 %person moves to the side away from robot
                                 matrix = [0;-1.15/15;0];
                                 cupPos = cupPos+matrix;
                                 tester = transl(cupPos);%*transl(0,0,-0.25); %added a transl down so the cup is in hand
                                 cup.updatePosition(tester);
                             end
 
-                            if i <=50 && i > 45
+                            if i <=50 && i > 45 %person moves back
                                 matrix = [-0.9/5;0;0];
                                 cupPos = cupPos+matrix;
                                 tester = transl(cupPos);%*transl(0,0,-0.25); %added a transl down so the cup is in hand
@@ -271,7 +279,7 @@ classdef Animation < handle
                         % this pauses the code while the estop is pressed
                         pause(1);
                         while self.robotRunning == 0
-                            pause(1);
+                            pause(1); %continue button while loop
                         end
                     end
 

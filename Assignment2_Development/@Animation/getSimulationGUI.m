@@ -82,7 +82,7 @@ function getSimulationGUI(self)
 
 		
 	%% Callbacks
-	%darkness slider callback
+	% callback
 	set(handles.order1, ...
 		'Interruptible', 'on', ...
 		'Callback', @(src, event)order1_callback(src, self, handles));
@@ -95,10 +95,6 @@ function getSimulationGUI(self)
 		'Interruptible', 'on', ...
 		'Callback', @(src, event)order3_callback(src, self, handles));
 
-% 	set(handles.start, ...
-% 		'Interruptible', 'on', ...
-% 		'Callback', @(src, event)start_callback(src, self, handles));
-% 	
 	set(handles.emergencyStop, ...
 		'Interruptible', 'off', ...
 		'Callback', @(src, event)emergencyStop_callback(src, self, handles));
@@ -132,22 +128,22 @@ function emergencyStop_callback(src, self, handles)
 
 button_state = get(handles.emergencyStop,'Value');
 
-if(button_state == 1)
+if(button_state == 1) %if estop is currently "released"
     set(handles.emergencyStop,'string','Release','foregroundcolor','blue','BackgroundColor', '#B2BEB5')
-	self.estop = 1;
-    self.robotRunning = 0;
+	self.estop = 1; %turn on estop
+    self.robotRunning = 0; %set continue off 
     disp("WARNING! EMERGENCY STOP HAS BEEN ENGAGED!");
 else
 %     set(handles.emergencyStop,'string','release','foregroundcolor','blue','BackgroundColor', 'grey')
    set(handles.emergencyStop,'String','E-STOP','ForegroundColor','red', 'BackgroundColor', 'white')
-   self.estop = 0;
+   self.estop = 0; %turn off/"release" estop
    disp("Emergency Stop has been released");
 end
 end
 
 function continue_callback(src, self, handles)
-    if self.estop == 0
-	self.robotRunning = 1;
+    if self.estop == 0 %if the estop has been released
+	self.robotRunning = 1; %tell robot to continue to run
     disp("Continue delivery...");
     end
 end
