@@ -1,4 +1,4 @@
-%%UR3 Class
+%%IRB120Class
 classdef IRB120 < handle
     properties
         %> Robot model
@@ -10,7 +10,6 @@ classdef IRB120 < handle
         %> Flag to indicate if gripper is used
         useGripper = false;
 
-
         %> robotic base location
         maxWorkspace;
 
@@ -19,7 +18,6 @@ classdef IRB120 < handle
         yPos;
         zPos;
         zYaw;
-
 
         qlim;
 
@@ -32,7 +30,7 @@ classdef IRB120 < handle
             self.xPos = xPosition;
             self.yPos = yPosition;
             self.zPos = zPosition;
-
+            
 
             % robot =
             self.GetIRB120Robot();
